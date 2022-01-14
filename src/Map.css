@@ -1,0 +1,5 @@
+.Map--container {
+  width: 50%;
+  height: 100vh;
+  z-index: 0;
+}

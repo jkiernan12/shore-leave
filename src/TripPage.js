@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import Nav from './Nav';
+import Map from './Map';
 
 function TripPage() {
   return ( 
     <main>
-      and this is trip page
+      <Nav />
+      <Map />
     </main>
    );
 }

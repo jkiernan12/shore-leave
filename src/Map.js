@@ -10,7 +10,6 @@ function Map() {
     zoom: 5
   }
 
-  const position = [51.505, -0.09]
   const [currCoord, setCurrCoord] = useState(myCoord)
 
   return (

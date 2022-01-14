@@ -3632,3 +3632,5 @@ const data = {
   },
   total_count: 324
   }
+
+  export default data

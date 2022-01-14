@@ -15,13 +15,13 @@ function App() {
   // .then(data => console.log(data))
 
 
-    fetch('https://api.marinas.com/v1/points/95cz')
+    // fetch('https://api.marinas.com/v1/points/95cz')
   //   headers: {
   //     'Authorization': 'fsq3JtsIUeGTGKP54qKENvvcQdGsJnY0NDfooAk1Nvf/bLc='
   //   }
   // })
-  .then(res => res.json())
-  .then(data => console.log(data))
+  // .then(res => res.json())
+  // .then(data => console.log(data))
 
 
   return (

@@ -1,0 +1,17 @@
+.TripCard {
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin: 1.5%;
+  cursor: pointer;
+  text-decoration: none;
+  color: #262660;
+}
+
+.TripCard--text {
+  margin: 5px;
+}
+
+.TripCard--image {
+  width: 200px;
+}

@@ -1,0 +1,17 @@
+.TripSection {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.TripSection--header {
+  margin: 1%;
+}
+
+.Trips--container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}

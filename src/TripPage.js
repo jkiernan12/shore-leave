@@ -3,6 +3,7 @@ import './TripPage.css'
 import Nav from './Nav';
 import Map from './Map';
 import Form from './Form';
+import POICard from './POICard';
 
 function TripPage() {
   return ( 
@@ -12,6 +13,13 @@ function TripPage() {
       <Map />
       <section>
       <Form />
+      <section>
+        <POICard />
+        <POICard />
+        <POICard />
+        <POICard />
+
+      </section>
       </section>
     </main>
     </>

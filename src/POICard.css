@@ -1,0 +1,22 @@
+.POICard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin: 1%;
+}
+
+.POICard--image {
+  width: 150px;
+  margin: 1%;
+}
+
+.POICard--heart {
+  background-color: red;
+  width: 75px;
+  height: 75px;
+  border-radius: 50px;
+  margin: 1%;
+}

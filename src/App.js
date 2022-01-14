@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router';
+import MainPage from './MainPage';
+import TripPage from './TripPage'
 
 function App() {
   
@@ -23,20 +26,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path='/' element={<MainPage />} />
+        <Route path='/trip' element={<TripPage />}/>
+      </Routes>
     </div>
   );
 }

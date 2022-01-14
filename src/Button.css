@@ -1,0 +1,23 @@
+button {
+  padding: 10px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.button-container {
+  margin: 1%;
+  width: 33%;
+}
+
+.button__primary {
+  color: #d2ab2d;
+  background-color: #262660;
+  border: 2px solid #d2ab2d;
+}
+
+.button__secondary {
+  color: #262660;
+  background-color: #d2ab2d;
+  border: 2px solid #d2ab2d;
+}

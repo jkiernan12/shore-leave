@@ -11,15 +11,18 @@ function TripPage() {
     <Nav />
     <main className='TripPage'>
       <Map />
-      <section>
+      <section className='TripPage--right'>
       <Form />
-      <section>
-        <POICard />
-        <POICard />
-        <POICard />
-        <POICard />
-
-      </section>
+        <section className='POI-section'>
+          <POICard />
+          <POICard />
+          <POICard />
+          <POICard />
+          <POICard />
+          <POICard />
+          <POICard />
+          <POICard />
+        </section>
       </section>
     </main>
     </>

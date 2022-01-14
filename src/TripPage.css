@@ -1,3 +1,13 @@
 .TripPage {
   display: flex;
+  height: calc(100vh - 100px)
+}
+
+.TripPage--right {
+  height: 100%;
+}
+
+.POI-section {
+  overflow-y: scroll;
+  height: 82%;
 }

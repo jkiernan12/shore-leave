@@ -4,6 +4,7 @@
   color:#d2ab2d;
   display: flex;
   justify-content: space-between;
+  height: 100px;
 }
 
 .Nav {

@@ -4,11 +4,16 @@ import Nav from './Nav';
 import Map from './Map';
 import Form from './Form';
 import POICard from './POICard';
-import data from './datafile'
+import DestinationForm from './DestinationForm'
 
-function TripPage() {
+function TripPage({addTrip}) {
   const [marinas, setMarinas] = useState('')
   const [selectedMarina, setSelectedMarina] = useState('')
+  const [stage, setStage] = useState('marina')
+
+  function updateSelectedMarina(id) {
+    setSelectedMarina(marinas.find(marina => marina.id === id))
+  }
 
   function cleanMarinaData(currData) {
     const filteredData = currData.data.filter(point => point.kind === "marina");
@@ -58,13 +63,24 @@ function TripPage() {
     <>
     <Nav />
     <main className='TripPage'>
-      <Map updateMarinas={updateMarinas} marinas={marinas} setSelectedMarina={setSelectedMarina} />
+      <Map className='Map' 
+        updateMarinas={updateMarinas} 
+        marinas={marinas} 
+        selectedMarina={selectedMarina}
+        updateSelectedMarina={updateSelectedMarina} />
       <section className='TripPage--right'>
-      <Form />
+     {stage === 'marina' ? <DestinationForm selectedMarina={selectedMarina} /> : <Form />}
         <section className='POI-section'>
         {marinas && marinas.map(marina => {
-          return <POICard name={marina.name} image={marina.image_thumb} rating={marina.rating} fuel={marina.fuel} selected={marina.id === selectedMarina.id} />
-        })}
+          return (
+            <POICard name={marina.name} 
+              image={marina.image_thumb} 
+              rating={marina.rating} 
+              fuel={marina.fuel} 
+              id={marina.id}
+              selected={marina.id === selectedMarina.id}
+              updateSelectedMarina={updateSelectedMarina} />
+          )})}
         </section>
       </section>
     </main>

@@ -3,7 +3,7 @@ import './POICard.css'
 import logo from './logo.svg'
 import Button from './Button';
 
-function POICard({name, image, selected, rating, fuel}) {
+function POICard({name, image, selected, rating, id, fuel, updateSelectedMarina}) {
   const selectedCard = useRef(null)
 
   const scrollToElement = () => {
@@ -24,7 +24,7 @@ function POICard({name, image, selected, rating, fuel}) {
         {fuel.length > 0 && <p>Fuel Available: {fuel.join(', ')}</p>}
         {rating && <p>Rating: {rating}</p>}
       </div>
-      <button className='button__primary POI--button'>Select</button>
+      <button onClick={() => updateSelectedMarina(id) } className='button__primary POI--button'>Select</button>
     </article>
    );
 }

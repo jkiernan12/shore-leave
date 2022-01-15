@@ -3,43 +3,53 @@ import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
 import './Map.css'
 import MapEvents from './MapEvents'
 import Button from './Button'
+import logo from './logo.svg'
+import L from 'leaflet';
 
-function Map({ updateMarinas, marinas, setSelectedMarina }) {
+
+function Map({ updateMarinas, marinas, updateSelectedMarina, selectedMarina }) {
   const myCoord = {
     center: [41, -70],
     zoom: 8
   }
 
-  function updateSelectedMarina(id) {
-    console.log(id)
-    setSelectedMarina(marinas.find(marina => marina.id === id))
-    // if (e.target.nodeName === 'BUTTON') {
-    //   console.log(e)
-    //   setSelectedMarina()
-    // }
-  }
+  const myIcon = new L.Icon({
+    iconUrl: logo,
+    iconRetinaUrl: logo,
+    iconAnchor: null,
+    popupAnchor: null,
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null,
+    iconSize: new L.Point(60, 75),
+    className: 'leaflet-div-icon'
+});
 
   const [currCoord, setCurrCoord] = useState(myCoord)
   console.log(marinas)
   return (
-    <MapContainer className="Map--container" center={currCoord.center} zoom={currCoord.zoom} scrollWheelZoom={false}>
+    <MapContainer 
+      className="Map--container" 
+      center={currCoord.center} 
+      zoom={currCoord.zoom} 
+      scrollWheelZoom={false}>
       <TileLayer
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {console.log(marinas)}
       {marinas && marinas.map(({location, name, id}) => {
-        console.log(name)
         return (
-          <Marker key={id} position={[location.lat, location.lon]} eventHandlers={{
-            click: () => {
+          <Marker 
+          key={id} 
+          position={[location.lat, location.lon]} 
+          // icon={selectedMarina.id === id ? myIcon : undefined }
+          eventHandlers={{
+            click: (e) => {
               updateSelectedMarina(id)
             },
           }} />
         )
-
       })
-      
       }
       <MapEvents updateMarinas={updateMarinas} />
     </MapContainer>

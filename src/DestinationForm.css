@@ -1,0 +1,18 @@
+.DestinationForm {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  margin: 2%;
+  height: 11%;
+  width: 100%;
+}
+
+.marina-name {
+  width: 33%
+}
+
+.DestinationForm--button {
+  max-width: 33%;
+  background-color: #262660;
+  color: #d2ab2d;
+}

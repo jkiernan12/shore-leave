@@ -5,9 +5,12 @@
 
 .TripPage--right {
   height: 100%;
+  width: 100%;
 }
 
 .POI-section {
   overflow-y: scroll;
   height: 82%;
+  scroll-behavior: smooth;
+  width: 100%;
 }

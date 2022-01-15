@@ -1,6 +1,6 @@
 .POICard {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
   border: 1px solid lightgray;
@@ -13,10 +13,15 @@
   margin: 1%;
 }
 
-.POICard--heart {
-  background-color: red;
-  width: 75px;
-  height: 75px;
-  border-radius: 50px;
+.POICard--text {
+  width: 100%;
+}
+
+.POI--button {
+  max-width: 150px;
   margin: 1%;
+}
+
+.highlighted__true {
+  border: 3px solid rgb(24, 24, 121);
 }

@@ -74,10 +74,10 @@ function TripPage({addTrip}) {
         setSelectedMarina={setSelectedMarina}
         addTrip={addTrip}
         setStage={setStage} /> : <Form />}
-        <MarinaListings 
+        {stage === 'marina' && <MarinaListings 
           marinas={marinas}
           selectedMarina={selectedMarina}
-          updateSelectedMarina={updateSelectedMarina} />
+          updateSelectedMarina={updateSelectedMarina} />}
       </section>
     </main>
     </>

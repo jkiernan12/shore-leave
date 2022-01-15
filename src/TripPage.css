@@ -10,4 +10,5 @@
 .POI-section {
   overflow-y: scroll;
   height: 82%;
+  scroll-behavior: smooth;
 }

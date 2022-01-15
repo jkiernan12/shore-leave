@@ -1,17 +1,30 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import './POICard.css'
 import logo from './logo.svg'
+import Button from './Button';
 
-function POICard({name, image, selected, rating}) {
+function POICard({name, image, selected, rating, fuel}) {
+  const selectedCard = useRef(null)
+
+  const scrollToElement = () => {
+    selectedCard.current.scrollIntoView()
+  }
+
+  useEffect(() => {
+    if (selected) {
+      scrollToElement()
+    }
+  }, [selected])
+
   return ( 
-    <article className={`POICard highlighted__${selected}`}>
+    <article ref={selectedCard} className={`POICard highlighted__${selected}`}>
       <img className='POICard--image' src={image ? image : logo}/>
       <div className='POICard--text'>
         <h3>{name}</h3>
-        <p>Information about the item here and more info. about the item here and more info. about the item here and more info. </p>
+        {fuel.length > 0 && <p>Fuel Available: {fuel.join(', ')}</p>}
         {rating && <p>Rating: {rating}</p>}
       </div>
-      <div className='POICard--heart'></div>
+      <button className='button__primary POI--button'>Select</button>
     </article>
    );
 }

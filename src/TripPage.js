@@ -5,6 +5,7 @@ import Map from './Map';
 import Form from './Form';
 import POICard from './POICard';
 import DestinationForm from './DestinationForm'
+import MarinaListings from './MarinaListings';
 
 function TripPage({addTrip}) {
   const [marinas, setMarinas] = useState('')
@@ -49,7 +50,6 @@ function TripPage({addTrip}) {
     .then(res => res.json())
     .then(data => {
       const cleanedData = cleanMarinaData(data)
-      console.log(cleanedData)
       setMarinas(cleanedData)
     })
 
@@ -69,19 +69,15 @@ function TripPage({addTrip}) {
         selectedMarina={selectedMarina}
         updateSelectedMarina={updateSelectedMarina} />
       <section className='TripPage--right'>
-     {stage === 'marina' ? <DestinationForm selectedMarina={selectedMarina} /> : <Form />}
-        <section className='POI-section'>
-        {marinas && marinas.map(marina => {
-          return (
-            <POICard name={marina.name} 
-              image={marina.image_thumb} 
-              rating={marina.rating} 
-              fuel={marina.fuel} 
-              id={marina.id}
-              selected={marina.id === selectedMarina.id}
-              updateSelectedMarina={updateSelectedMarina} />
-          )})}
-        </section>
+        {stage === 'marina' ? <DestinationForm 
+        selectedMarina={selectedMarina} 
+        setSelectedMarina={setSelectedMarina}
+        addTrip={addTrip}
+        setStage={setStage} /> : <Form />}
+        <MarinaListings 
+          marinas={marinas}
+          selectedMarina={selectedMarina}
+          updateSelectedMarina={updateSelectedMarina} />
       </section>
     </main>
     </>

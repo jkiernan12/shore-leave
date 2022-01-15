@@ -26,7 +26,6 @@ function Map({ updateMarinas, marinas, updateSelectedMarina, selectedMarina }) {
 });
 
   const [currCoord, setCurrCoord] = useState(myCoord)
-  console.log(marinas)
   return (
     <MapContainer 
       className="Map--container" 

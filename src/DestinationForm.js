@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './DestinationForm.css'
 
-function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage}) {
+function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage, setCurrTrip}) {
   const [date, setDate] = useState('')
 
   function createTrip(e) {
@@ -13,6 +13,7 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage})
         marina: selectedMarina
       }
       addTrip(currTrip)
+      setCurrTrip(currTrip)
       setSelectedMarina('')
       setStage('locations')
     }

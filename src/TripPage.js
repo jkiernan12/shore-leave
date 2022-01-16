@@ -12,6 +12,7 @@ function TripPage({addTrip}) {
   const [marinas, setMarinas] = useState('')
   const [selectedMarina, setSelectedMarina] = useState('')
   const [stage, setStage] = useState('marina')
+  const [currTrip, setCurrTrip] = useState('')
 
   function updateSelectedMarina(id) {
     setSelectedMarina(marinas.find(marina => marina.id === id))
@@ -60,20 +61,24 @@ function TripPage({addTrip}) {
       // setMarinas(cleanedData)
   }
 
-  function fetchPOIs({north, east, south, west}) {
-    console.log('fetch ran')
-    fetch(`https://api.marinas.com/v1/points/search?bounds[ne][lat]=${north}&bounds[ne][lon]=${east}&bounds[sw][lat]=${south}&bounds[sw][lon]=${west}`)
-    .then(res => res.json())
-    .then(data => {
-      const cleanedData = cleanMarinaData(data)
-      setMarinas(cleanedData)
-    })
+  function searchPOI({locomotion, travelTime, interest}) {
 
-    //Seeded data call below
-      // const cleanedData = cleanMarinaData(data)
-      // console.log(cleanedData)
-      // setMarinas(cleanedData)
-  }
+    console.log('fetch ran')
+    const POIMap = {
+      'restaurants': 13000,
+      'grocery-stores': 17069,
+      'hardware-stores': 17090,
+      'entertainment': 10000
+    }
+    const currLocationStr = `${currTrip.marina.location.lat},${currTrip.marina.location.lon}`
+    fetch(`https://api.foursquare.com/v3/places/search?ll=${currLocationStr}&radius=${travelTime * 80}&categories=${POIMap[interest]}&limit=50&session_token=fsq3JtsIUeGTGKP54qKENvvcQdGsJnY0NDfooAk1Nvf%2FbLc%3D`, {
+      headers: {
+        Authorization: 'fsq3JtsIUeGTGKP54qKENvvcQdGsJnY0NDfooAk1Nvf/bLc='
+      }
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    }
 
   return ( 
     <>
@@ -90,6 +95,7 @@ function TripPage({addTrip}) {
         selectedMarina={selectedMarina} 
         setSelectedMarina={setSelectedMarina}
         addTrip={addTrip}
+        setCurrTrip={setCurrTrip}
         setStage={setStage} />
         <MarinaListings 
           marinas={marinas}
@@ -98,11 +104,11 @@ function TripPage({addTrip}) {
       </section>
       }
       {stage !== 'marina' && <section className='TripPage--right'>
-        <Form />
-        <POIListings 
+        <Form searchPOI={searchPOI}/>
+        {/* <POIListings 
           marinas={marinas}
           selectedMarina={selectedMarina}
-          updateSelectedMarina={updateSelectedMarina} />
+          updateSelectedMarina={updateSelectedMarina} /> */}
       </section>
       } 
       

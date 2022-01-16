@@ -8,10 +8,11 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage, 
     e.preventDefault()
     if (date && selectedMarina) {
       const currTrip = {
+        id: date.replace(/-/g, '') + '_' + selectedMarina.id,
         date,
-        marina: selectedMarina
+        marina: selectedMarina,
+        destinations: []
       }
-      addTrip(currTrip)
       setCurrTrip(currTrip)
       setSelectedMarina('')
       setStage('locations')

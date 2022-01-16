@@ -7,7 +7,7 @@ import logo from './logo.svg'
 import L from 'leaflet';
 
 
-function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, selectedPOI, updateSelectedPOI, stage }) {
+function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, selectedPOI, highlightSelectedPOI, stage }) {
   const myCoord = {
     center: [41, -71],
     zoom: 8
@@ -58,7 +58,7 @@ function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, s
           // icon={selectedMarina.id === id ? myIcon : undefined }
           eventHandlers={{
             click: (e) => {
-              updateSelectedPOI(id)
+              highlightSelectedPOI(id)
             },
           }}
       />

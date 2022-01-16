@@ -8,7 +8,7 @@ import POIListings from './POIListings';
 import DestinationForm from './DestinationForm'
 import MarinaListings from './MarinaListings';
 
-function TripPage({addTrip}) {
+function TripPage({addTrip, editTrip, trips}) {
   const [marinas, setMarinas] = useState('')
   const [selectedMarina, setSelectedMarina] = useState('')
   const [POIs, setPOIs] = useState('')
@@ -20,8 +20,28 @@ function TripPage({addTrip}) {
     setSelectedMarina(marinas.find(marina => marina.id === id))
   }
 
-  function updateSelectedPOI(id) {
+  function highlightSelectedPOI(id) {
     setSelectedPOI(POIs.find(poi => poi.id === id))
+  }
+
+  function updateSelectedPOI(id) {
+    const currPOI = POIs.find(poi => poi.id === id)
+    const updatedDestinations = {
+      destinations: [...currTrip.destinations, currPOI]
+    }
+    setCurrTrip(() => { 
+      return {
+        ...currTrip, 
+        ...updatedDestinations
+      }
+    })
+    if (!trips[0]) {
+      addTrip(currTrip)
+    } else if (trips.find(trip => trip.id === currTrip.id)) {
+      editTrip(currTrip)
+    } else if (!trips.find(trip => trip.id === currTrip.id)) {
+      addTrip(currTrip)
+    }
   }
 
   function cleanMarinaData(currData) {
@@ -116,7 +136,7 @@ function TripPage({addTrip}) {
         updateSelectedMarina={updateSelectedMarina}
         POIs={POIs}
         selectedPOI={selectedPOI}
-        updateSelectedPOI={updateSelectedPOI}
+        highlightSelectedPOI={highlightSelectedPOI}
         stage={stage} />
       {stage === 'marina' && <section className='TripPage--right'>
         <DestinationForm 

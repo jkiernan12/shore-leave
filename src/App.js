@@ -9,7 +9,7 @@ function App() {
   const [trips, setTrips] = useState([])
 
   function addTrip(newTrip) {
-    setTrips(...trips, newTrip)
+    setTrips([...trips, newTrip])
   }
 
   return (

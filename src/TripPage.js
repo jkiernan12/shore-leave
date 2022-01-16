@@ -11,11 +11,17 @@ import MarinaListings from './MarinaListings';
 function TripPage({addTrip}) {
   const [marinas, setMarinas] = useState('')
   const [selectedMarina, setSelectedMarina] = useState('')
+  const [POIs, setPOIs] = useState('')
+  const [selectedPOI, setSelectedPOI] = useState('')
   const [stage, setStage] = useState('marina')
   const [currTrip, setCurrTrip] = useState('')
 
   function updateSelectedMarina(id) {
     setSelectedMarina(marinas.find(marina => marina.id === id))
+  }
+
+  function updateSelectedPOI(id) {
+    setSelectedPOI(POIs.find(poi => poi.id === id))
   }
 
   function cleanMarinaData(currData) {
@@ -94,7 +100,8 @@ function TripPage({addTrip}) {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(cleanPOIData(data))
+      const cleanedData = cleanPOIData(data)
+      setPOIs(cleanedData)
     })
     }
 
@@ -107,6 +114,9 @@ function TripPage({addTrip}) {
         marinas={marinas} 
         selectedMarina={selectedMarina}
         updateSelectedMarina={updateSelectedMarina}
+        POIs={POIs}
+        selectedPOI={selectedPOI}
+        updateSelectedPOI={updateSelectedPOI}
         stage={stage} />
       {stage === 'marina' && <section className='TripPage--right'>
         <DestinationForm 
@@ -118,15 +128,17 @@ function TripPage({addTrip}) {
         <MarinaListings 
           marinas={marinas}
           selectedMarina={selectedMarina}
-          updateSelectedMarina={updateSelectedMarina} />
+          updateSelectedMarina={updateSelectedMarina}
+          type='marina' />
       </section>
       }
       {stage !== 'marina' && <section className='TripPage--right'>
         <Form searchPOI={searchPOI}/>
-        {/* <POIListings 
-          marinas={marinas}
-          selectedMarina={selectedMarina}
-          updateSelectedMarina={updateSelectedMarina} /> */}
+        <POIListings 
+          POIs={POIs}
+          selectedPOI={selectedPOI}
+          updateSelectedPOI={updateSelectedPOI}
+          type='poi' />
       </section>
       } 
       

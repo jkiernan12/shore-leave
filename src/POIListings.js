@@ -1,18 +1,21 @@
 import React from 'react';
 import POICard from './POICard';
 
-function POIListings({marinas, selectedMarina, updateSelectedMarina}) {
+function POIListings({type, POIs, selectedPOI, updateSelectedPOI}) {
+
   return ( 
     <section className='POI-section'>
-        { marinas && marinas.map(marina => {
+        { POIs.length > 0 && POIs.map(poi => {
           return (
-            <POICard name={marina.name} 
-              image={marina.image_thumb} 
-              rating={marina.rating} 
-              fuel={marina.fuel} 
-              id={marina.id}
-              selected={marina.id === selectedMarina.id}
-              updateSelectedMarina={updateSelectedMarina} />
+            <POICard type={type}
+              name={poi.name} 
+              id={poi.id}
+              key={poi.id}
+              categories={poi.categories}
+              distance={poi.distance}
+              address={poi.address}
+              selected={poi.id === selectedPOI.id}
+              updateSelectedPOI={updateSelectedPOI} />
           )})}
         </section>
    );

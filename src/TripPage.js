@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Map from './Map';
 import Form from './Form';
 import POICard from './POICard';
+import POIListings from './POIListings';
 import DestinationForm from './DestinationForm'
 import MarinaListings from './MarinaListings';
 
@@ -44,7 +45,22 @@ function TripPage({addTrip}) {
     return mappedData
   }
 
-  function updateMarinas({north, east, south, west}) {
+  function fetchMarinas({north, east, south, west}) {
+    console.log('fetch ran')
+    fetch(`https://api.marinas.com/v1/points/search?bounds[ne][lat]=${north}&bounds[ne][lon]=${east}&bounds[sw][lat]=${south}&bounds[sw][lon]=${west}`)
+    .then(res => res.json())
+    .then(data => {
+      const cleanedData = cleanMarinaData(data)
+      setMarinas(cleanedData)
+    })
+
+    //Seeded data call below
+      // const cleanedData = cleanMarinaData(data)
+      // console.log(cleanedData)
+      // setMarinas(cleanedData)
+  }
+
+  function fetchPOIs({north, east, south, west}) {
     console.log('fetch ran')
     fetch(`https://api.marinas.com/v1/points/search?bounds[ne][lat]=${north}&bounds[ne][lon]=${east}&bounds[sw][lat]=${south}&bounds[sw][lon]=${west}`)
     .then(res => res.json())
@@ -64,21 +80,32 @@ function TripPage({addTrip}) {
     <Nav />
     <main className='TripPage'>
       <Map className='Map' 
-        updateMarinas={updateMarinas} 
+        fetchData={fetchMarinas} 
         marinas={marinas} 
         selectedMarina={selectedMarina}
-        updateSelectedMarina={updateSelectedMarina} />
-      <section className='TripPage--right'>
-        {stage === 'marina' ? <DestinationForm 
+        updateSelectedMarina={updateSelectedMarina}
+        stage={stage} />
+      {stage === 'marina' && <section className='TripPage--right'>
+        <DestinationForm 
         selectedMarina={selectedMarina} 
         setSelectedMarina={setSelectedMarina}
         addTrip={addTrip}
-        setStage={setStage} /> : <Form />}
-        {stage === 'marina' && <MarinaListings 
+        setStage={setStage} />
+        <MarinaListings 
           marinas={marinas}
           selectedMarina={selectedMarina}
-          updateSelectedMarina={updateSelectedMarina} />}
+          updateSelectedMarina={updateSelectedMarina} />
       </section>
+      }
+      {stage !== 'marina' && <section className='TripPage--right'>
+        <Form />
+        <POIListings 
+          marinas={marinas}
+          selectedMarina={selectedMarina}
+          updateSelectedMarina={updateSelectedMarina} />
+      </section>
+      } 
+      
     </main>
     </>
    );

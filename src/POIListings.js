@@ -1,7 +1,7 @@
 import React from 'react';
 import POICard from './POICard';
 
-function MarinaListings({marinas, selectedMarina, updateSelectedMarina}) {
+function POIListings({marinas, selectedMarina, updateSelectedMarina}) {
   return ( 
     <section className='POI-section'>
         { marinas && marinas.map(marina => {
@@ -18,4 +18,4 @@ function MarinaListings({marinas, selectedMarina, updateSelectedMarina}) {
    );
 }
 
-export default MarinaListings;
+export default POIListings;

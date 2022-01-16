@@ -7,9 +7,9 @@ import logo from './logo.svg'
 import L from 'leaflet';
 
 
-function Map({ updateMarinas, marinas, updateSelectedMarina, selectedMarina }) {
+function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, selectedPOI, highlightSelectedPOI, stage }) {
   const myCoord = {
-    center: [41, -70],
+    center: [41, -71],
     zoom: 8
   }
 
@@ -36,7 +36,7 @@ function Map({ updateMarinas, marinas, updateSelectedMarina, selectedMarina }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {marinas && marinas.map(({location, name, id}) => {
+      {marinas && stage === 'marina' && marinas.map(({location, id}) => {
         return (
           <Marker 
           key={id} 
@@ -50,7 +50,22 @@ function Map({ updateMarinas, marinas, updateSelectedMarina, selectedMarina }) {
         )
       })
       }
-      <MapEvents updateMarinas={updateMarinas} />
+      {POIs && stage !== 'marina' && POIs.map(({location, id}) => {
+        return (
+          <Marker 
+          key={id} 
+          position={[location.lat, location.lon]} 
+          // icon={selectedMarina.id === id ? myIcon : undefined }
+          eventHandlers={{
+            click: (e) => {
+              highlightSelectedPOI(id)
+            },
+          }}
+      />
+        )
+      })
+      }
+      {stage === 'marina' && <MapEvents fetchData={fetchData} />}
     </MapContainer>
   )
 }

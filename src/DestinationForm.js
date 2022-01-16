@@ -1,18 +1,19 @@
 import React, {useState} from 'react'
 import './DestinationForm.css'
 
-function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage}) {
+function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage, setCurrTrip}) {
   const [date, setDate] = useState('')
 
   function createTrip(e) {
     e.preventDefault()
     if (date && selectedMarina) {
-      console.log(selectedMarina)
       const currTrip = {
+        id: date.replace(/-/g, '') + '_' + selectedMarina.id,
         date,
-        marina: selectedMarina
+        marina: selectedMarina,
+        destinations: []
       }
-      addTrip(currTrip)
+      setCurrTrip(currTrip)
       setSelectedMarina('')
       setStage('locations')
     }

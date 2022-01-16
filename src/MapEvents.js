@@ -12,10 +12,10 @@ function cleanMapBounds(map) {
   }
 }
 
-function MapEvents({ updateMarinas }) {
+function MapEvents({ fetchData }) {
   const map = useMapEvents({
     moveend: () => {
-      updateMarinas(cleanMapBounds(map))
+      fetchData(cleanMapBounds(map))
     },
   })
   return null

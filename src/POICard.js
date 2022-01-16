@@ -3,7 +3,7 @@ import './POICard.css'
 import logo from './logo.svg'
 import Button from './Button';
 
-function POICard({name, image, selected, rating, id, fuel, updateSelectedMarina}) {
+function POICard({type, name, image, selected, id, rating, fuel, updateSelectedMarina, updateSelectedPOI, categories, distance, address}) {
   const selectedCard = useRef(null)
 
   const scrollToElement = () => {
@@ -15,7 +15,7 @@ function POICard({name, image, selected, rating, id, fuel, updateSelectedMarina}
       scrollToElement()
     }
   }, [selected])
-
+  if (type === 'marina') {
   return ( 
     <article ref={selectedCard} className={`POICard highlighted__${selected}`}>
       <img className='POICard--image' src={image ? image : logo}/>
@@ -26,7 +26,22 @@ function POICard({name, image, selected, rating, id, fuel, updateSelectedMarina}
       </div>
       <button onClick={() => updateSelectedMarina(id) } className='button__primary POI--button'>Select</button>
     </article>
-   );
+   )
+  } else {
+    return ( 
+      <article ref={selectedCard} className={`POICard highlighted__${selected}`}>
+        <img className='POICard--image' src={image ? image : logo}/>
+        <div className='POICard--text'>
+          <h3>{name}</h3>
+          {categories.length > 0 && <p>Categories: {categories.join(', ')}</p>}
+          <p>Distance: {distance} meters</p>
+          <p>Address: {address}</p>
+          {rating && <p>Rating: {rating}</p>}
+        </div>
+        <button onClick={() => updateSelectedPOI(id) } className='button__primary POI--button'>Select</button>
+      </article>
+     )
+  }
 }
 
 export default POICard;

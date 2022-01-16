@@ -3,15 +3,17 @@ import TripCard from './TripCard';
 import logo from './logo.svg'
 import './TripSection.css';
 
-function TripSection({title, tripType}) {
+function TripSection({title, tripType, trips}) {
+  console.log(trips)
   return ( 
     <section className='TripSection'>
       <h2 className='TripSection--header'>{title}</h2>
       <div className='Trips--container'>
-        <TripCard id="trip" title="Name here" date="January 1, 2021" image={logo} />
-        <TripCard id="trip" title="Name here" date="January 1, 2021" image={logo} />
-        <TripCard id="trip" title="Name here" date="January 1, 2021" image={logo} />
-
+        {trips.length > 0 ? trips.map(trip => {
+          return (
+            <TripCard id={trip.id} title={trip.marina.name} date={trip.date} image={logo} />
+          )
+        }) : 'Hmm looks like there is nothing here'}
       </div>
     </section>
    );

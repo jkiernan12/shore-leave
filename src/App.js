@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<MainPage />} />
+        <Route path='/' element={<MainPage trips={trips} />} />
         <Route path='/trip' element={<TripPage addTrip={addTrip} editTrip={editTrip} trips={trips} />}/>
       </Routes>
     </div>

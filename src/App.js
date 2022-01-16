@@ -7,6 +7,7 @@ import TripPage from './TripPage'
 
 function App() {
   const [trips, setTrips] = useState([])
+  const [stage, setStage] = useState('marina')
 
   function addTrip(newTrip) {
     console.log('add trip runs')
@@ -25,8 +26,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<MainPage trips={trips} />} />
-        <Route path='/trip' element={<TripPage addTrip={addTrip} editTrip={editTrip} trips={trips} />}/>
+        <Route path='/' element={<MainPage trips={trips} setStage={setStage} />} />
+        <Route path='/new-trip' element={<TripPage addTrip={addTrip} editTrip={editTrip} trips={trips} stage={stage} setStage={setStage} />}/>
+        <Route path='/trips/:tripID' element={<TripPage addTrip={addTrip} editTrip={editTrip} trips={trips} setStage={setStage} stage={stage} />} />
       </Routes>
     </div>
   );

@@ -7,7 +7,6 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage, 
   function createTrip(e) {
     e.preventDefault()
     if (date && selectedMarina) {
-      console.log(selectedMarina)
       const currTrip = {
         date,
         marina: selectedMarina

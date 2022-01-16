@@ -26,22 +26,22 @@ function TripPage({addTrip, editTrip, trips}) {
 
   function updateSelectedPOI(id) {
     const currPOI = POIs.find(poi => poi.id === id)
-    const updatedDestinations = {
-      destinations: [...currTrip.destinations, currPOI]
-    }
-    setCurrTrip(() => { 
-      return {
-        ...currTrip, 
-        ...updatedDestinations
+    let updatedDestinations = currTrip.destinations
+    const isDupe = currTrip.destinations.some(destination => destination.id === id)
+    if (!isDupe) {
+      updatedDestinations = {
+        destinations: [...currTrip.destinations, currPOI]
       }
-    })
-    if (!trips[0]) {
-      addTrip(currTrip)
-    } else if (trips.find(trip => trip.id === currTrip.id)) {
-      editTrip(currTrip)
-    } else if (!trips.find(trip => trip.id === currTrip.id)) {
-      addTrip(currTrip)
-    }
+      const newTrip = {...currTrip, ...updatedDestinations}
+      setCurrTrip(newTrip) 
+      if (!trips[0]) {
+        addTrip(newTrip)
+      } else if (trips.find(trip => trip.id === currTrip.id)) {
+        editTrip(newTrip, currPOI)
+      } else if (!trips.find(trip => trip.id === currTrip.id)) {
+        addTrip(newTrip)
+      }
+    } 
   }
 
   function cleanMarinaData(currData) {

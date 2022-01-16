@@ -9,12 +9,17 @@ function App() {
   const [trips, setTrips] = useState([])
 
   function addTrip(newTrip) {
+    console.log('add trip runs')
     setTrips([...trips, newTrip])
   }
 
-  function editTrip(newTrip) {
+  function editTrip(newTrip, newPOI) {
     const oldTrip = trips.find(trip => trip.id === newTrip.id)
-    oldTrip.destinations = [...oldTrip.destinations, newTrip.destinations]
+    const isDupe = (oldTrip.destinations.some(dest => dest.id === newPOI.id))
+    if (!isDupe) {
+      oldTrip.destinations.push(newPOI)
+    }
+    setTrips(trips)
   }
 
   return (

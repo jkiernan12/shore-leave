@@ -54,6 +54,14 @@ function TripPage({addTrip, editTrip, trips, stage, setStage}) {
     } 
   }
 
+  function removePOI(id) {
+    const destinationIndex = currTrip.destinations.indexOf(destination => destination.id === id)
+    currTrip.destinations.splice(destinationIndex, 1)
+    const oldTrip = trips.find(trip => trip.id === currTrip.id)
+    oldTrip.destinations.splice(destinationIndex, 1)
+    setCurrTrip(() => currTrip)
+  }
+
   function cleanMarinaData(currData) {
     const filteredData = currData.data.filter(point => point.kind === "marina");
     const mappedData = filteredData.map(marina => {
@@ -168,17 +176,23 @@ function TripPage({addTrip, editTrip, trips, stage, setStage}) {
           POIs={POIs}
           selectedPOI={selectedPOI}
           updateSelectedPOI={updateSelectedPOI}
-          type='poi' />
+          type='poi'
+          removePOI={removePOI}
+          currTrip={currTrip} />
       </section>
       }
       {stage === 'existing' && currTrip && <section className='TripPage--right'>
       <h1>{currTrip.marina.name}</h1>
       <p>{currTrip.date}</p>
+      <button onClick={() => setStage('locations')}>Edit</button>
         <POIListings 
           POIs={currTrip.destinations}
           selectedPOI={selectedPOI}
           updateSelectedPOI={updateSelectedPOI}
-          type='poi' />
+          type='poi'
+          removePOI={removePOI}
+          currTrip={currTrip}
+           />
       </section>
       } 
       

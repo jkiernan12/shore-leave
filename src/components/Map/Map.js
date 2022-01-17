@@ -7,7 +7,7 @@ import logo from '../../logo.svg'
 import L from 'leaflet';
 
 
-function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, selectedPOI, highlightSelectedPOI, stage }) {
+function Map({ marinas, setMarinas, updateSelectedMarina, selectedMarina, POIs, selectedPOI, highlightSelectedPOI, stage }) {
   const myCoord = {
     center: [41, -71],
     zoom: 8
@@ -80,7 +80,7 @@ function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, s
         )
       })
       }
-      {stage === 'marina' && <MapEvents fetchData={fetchData} />}
+      {stage === 'marina' && <MapEvents setter={setMarinas} />}
     </MapContainer>
   )
 }

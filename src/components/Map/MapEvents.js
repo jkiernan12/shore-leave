@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useMap, useMapEvents } from 'react-leaflet'
+import { fetchMarinas } from '../../api-calls'
 
 function cleanMapBounds(map) {
   const northEast = map.getBounds()._northEast;
@@ -12,10 +13,10 @@ function cleanMapBounds(map) {
   }
 }
 
-function MapEvents({ fetchData }) {
+function MapEvents({setter}) {
   const map = useMapEvents({
     moveend: () => {
-      fetchData(cleanMapBounds(map))
+      fetchMarinas(cleanMapBounds(map), setter)
     },
   })
   return null

@@ -5,6 +5,7 @@ function fetchMarinas({north, east, south, west}, setter) {
   fetch(`https://api.marinas.com/v1/points/search?bounds[ne][lat]=${north}&bounds[ne][lon]=${east}&bounds[sw][lat]=${south}&bounds[sw][lon]=${west}`)
   .then(res => res.json())
   .then(data => {
+    console.log(data)
     const cleanedData = cleanMarinaData(data)
     setter(cleanedData)
   })
@@ -32,6 +33,7 @@ function searchPOI({locomotion, travelTime, interest}, trip, setter) {
   })
   .then(res => res.json())
   .then(data => {
+    console.log(data)
     const cleanedData = cleanPOIData(data)
     setter(cleanedData)
   })

@@ -50,7 +50,22 @@ function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, s
         )
       })
       }
-      {POIs && stage !== 'marina' && POIs.map(({location, id}) => {
+      {POIs && stage === 'locations' && POIs.map(({location, id}) => {
+        return (
+          <Marker 
+          key={id} 
+          position={[location.lat, location.lon]} 
+          // icon={selectedMarina.id === id ? myIcon : undefined }
+          eventHandlers={{
+            click: (e) => {
+              highlightSelectedPOI(id)
+            },
+          }}
+      />
+        )
+      })
+      }
+      {POIs && stage === 'existing' && POIs.map(({location, id}) => {
         return (
           <Marker 
           key={id} 

@@ -7,14 +7,24 @@ import POICard from './POICard';
 import POIListings from './POIListings';
 import DestinationForm from './DestinationForm'
 import MarinaListings from './MarinaListings';
+import { useParams } from 'react-router'
 
-function TripPage({addTrip, editTrip, trips}) {
+function TripPage({addTrip, editTrip, trips, stage, setStage}) {
   const [marinas, setMarinas] = useState('')
   const [selectedMarina, setSelectedMarina] = useState('')
   const [POIs, setPOIs] = useState('')
   const [selectedPOI, setSelectedPOI] = useState('')
-  const [stage, setStage] = useState('marina')
   const [currTrip, setCurrTrip] = useState('')
+
+  const { tripID } = useParams()
+
+  useEffect(() => {
+    if (tripID) {
+      const matchedTrip = trips.find(trip => trip.id === tripID)
+      setCurrTrip(matchedTrip)
+      setPOIs(matchedTrip.destinations)
+  }
+  }, [tripID])
 
   function updateSelectedMarina(id) {
     setSelectedMarina(marinas.find(marina => marina.id === id))
@@ -26,22 +36,22 @@ function TripPage({addTrip, editTrip, trips}) {
 
   function updateSelectedPOI(id) {
     const currPOI = POIs.find(poi => poi.id === id)
-    const updatedDestinations = {
-      destinations: [...currTrip.destinations, currPOI]
-    }
-    setCurrTrip(() => { 
-      return {
-        ...currTrip, 
-        ...updatedDestinations
+    let updatedDestinations = currTrip.destinations
+    const isDupe = currTrip.destinations.some(destination => destination.id === id)
+    if (!isDupe) {
+      updatedDestinations = {
+        destinations: [...currTrip.destinations, currPOI]
       }
-    })
-    if (!trips[0]) {
-      addTrip(currTrip)
-    } else if (trips.find(trip => trip.id === currTrip.id)) {
-      editTrip(currTrip)
-    } else if (!trips.find(trip => trip.id === currTrip.id)) {
-      addTrip(currTrip)
-    }
+      const newTrip = {...currTrip, ...updatedDestinations}
+      setCurrTrip(newTrip) 
+      if (!trips[0]) {
+        addTrip(newTrip)
+      } else if (trips.find(trip => trip.id === currTrip.id)) {
+        editTrip(newTrip, currPOI)
+      } else if (!trips.find(trip => trip.id === currTrip.id)) {
+        addTrip(newTrip)
+      }
+    } 
   }
 
   function cleanMarinaData(currData) {
@@ -152,10 +162,20 @@ function TripPage({addTrip, editTrip, trips}) {
           type='marina' />
       </section>
       }
-      {stage !== 'marina' && <section className='TripPage--right'>
+      {stage === 'locations' && <section className='TripPage--right'>
         <Form searchPOI={searchPOI}/>
         <POIListings 
           POIs={POIs}
+          selectedPOI={selectedPOI}
+          updateSelectedPOI={updateSelectedPOI}
+          type='poi' />
+      </section>
+      }
+      {stage === 'existing' && currTrip && <section className='TripPage--right'>
+      <h1>{currTrip.marina.name}</h1>
+      <p>{currTrip.date}</p>
+        <POIListings 
+          POIs={currTrip.destinations}
           selectedPOI={selectedPOI}
           updateSelectedPOI={updateSelectedPOI}
           type='poi' />

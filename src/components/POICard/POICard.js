@@ -18,14 +18,17 @@ function POICard({type, name, image, selected, id, rating, fuel, updateSelectedM
     }
   }, [selected])
 
-  // useEffect(() => {
-  //   if (currTrip) {
-  //   if (currTrip.destinations?.length) {
-  //   const isSaved = currTrip.destinations.some(dest => dest.id === id)
-  //   setSaved(isSaved)
-  //   }
-  // }
-  // }, [currTrip.destinations])
+  useEffect(() => {
+    if (currTrip && currTrip.destinations?.length) {
+    const isSaved = currTrip.destinations.some(dest => dest.id === id)
+    setSaved(isSaved)
+    } 
+  }, [currTrip?.destinations])
+
+  function handleDelete(id) {
+    removePOI(id)
+    setSaved(false)
+  }
 
   if (type === 'marina') {
   return ( 
@@ -50,8 +53,8 @@ function POICard({type, name, image, selected, id, rating, fuel, updateSelectedM
           <p>Address: {address}</p>
           {rating && <p>Rating: {rating}</p>}
         </div>
-        <button onClick={() => updateSelectedPOI(id) } className='button__primary POI--button'>Select</button>
-        {saved && <button onClick={() => removePOI(id)}>Delete</button>}
+        {!saved && <button onClick={() => updateSelectedPOI(id) } className='button__primary POI--button'>Select</button>}
+        {saved && <button onClick={() => handleDelete(id)}>Delete</button>}
       </article>
      )
   }

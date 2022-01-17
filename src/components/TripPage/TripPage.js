@@ -8,7 +8,7 @@ import DestinationForm from '../DestinationForm/DestinationForm'
 import MarinaListings from '../MarinaListings/MarinaListings';
 import { useParams } from 'react-router'
 
-function TripPage({addTrip, editTrip, trips, stage, setStage}) {
+function TripPage({addTrip, editTrip, trips, setTrips, stage, setStage}) {
   const [marinas, setMarinas] = useState('')
   const [selectedMarina, setSelectedMarina] = useState('')
   const [POIs, setPOIs] = useState('')
@@ -54,11 +54,11 @@ function TripPage({addTrip, editTrip, trips, stage, setStage}) {
   }
 
   function removePOI(id) {
-    const destinationIndex = currTrip.destinations.indexOf(destination => destination.id === id)
-    currTrip.destinations.splice(destinationIndex, 1)
-    const oldTrip = trips.find(trip => trip.id === currTrip.id)
-    oldTrip.destinations.splice(destinationIndex, 1)
-    setCurrTrip(() => currTrip)
+    const newTrips = [...trips]
+    const oldTrip = newTrips.find(trip => trip.id === currTrip.id)
+    const oldDestinationIndex = oldTrip.destinations.indexOf(destination => destination.id === id)
+    oldTrip.destinations.splice(oldDestinationIndex, 1)
+    setTrips(() => ([...newTrips]))
   }
 
   return ( 

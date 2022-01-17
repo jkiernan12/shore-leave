@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import './DestinationForm.css'
 
 function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage, setCurrTrip}) {
   const [date, setDate] = useState('')
+  let navigate = useNavigate()
 
   function createTrip(e) {
     e.preventDefault()
@@ -16,6 +18,7 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage, 
       setCurrTrip(currTrip)
       setSelectedMarina('')
       setStage('locations')
+      navigate(`/trips/${currTrip.id}`)
     }
   }
 

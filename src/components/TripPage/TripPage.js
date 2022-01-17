@@ -18,7 +18,7 @@ function TripPage({addTrip, editTrip, trips, setTrips, stage, setStage}) {
   const { tripID } = useParams()
 
   useEffect(() => {
-    if (tripID) {
+    if (tripID && stage === 'existing') {
       const matchedTrip = trips.find(trip => trip.id === tripID)
       setCurrTrip(matchedTrip)
       setPOIs(matchedTrip.destinations)

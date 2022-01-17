@@ -1,6 +1,6 @@
 import React from 'react';
-import TripCard from './TripCard';
-import logo from './logo.svg'
+import TripCard from '../TripCard/TripCard';
+import logo from '../../logo.svg'
 import './TripSection.css';
 
 function TripSection({title, tripType, trips, setStage}) {

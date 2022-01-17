@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Nav from './Nav';
-import TripSection from './TripSection';
+import Nav from '../Nav/Nav.js';
+import TripSection from '../TripSection/TripSection.js';
 
 function MainPage({trips, setStage}) {
   const pastTrips = trips?.filter(trip => new Date(trip.date) < new Date(Date.now()))

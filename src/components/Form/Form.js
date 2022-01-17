@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import Button from './Button';
+import Button from '../Button/Button.js';
 import './Form.css'
+import { searchPOI } from '../../api-calls.js';
 
-function Form({ searchPOI }) {
+function Form({ setter, currTrip }) {
   const [locomotion, setLocomotion] = useState('walk')
   const [travelTime, setTravelTime] = useState(1)
   const [interest, setInterest] = useState('restaurants')
 
   function handlePOIClick(e) {
     e.preventDefault()
-    searchPOI({locomotion, travelTime, interest})
+    searchPOI({locomotion, travelTime, interest}, currTrip, setter)
   }
 
   return ( 

@@ -1,8 +1,7 @@
-import React from 'react';
-import POICard from './POICard';
+import React, { useState, useEffect } from 'react';
+import POICard from '../POICard/POICard';
 
-function POIListings({type, POIs, selectedPOI, updateSelectedPOI}) {
-
+function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip}) {
   return ( 
     <section className='POI-section'>
         { POIs.length > 0 && POIs.map(poi => {
@@ -15,7 +14,10 @@ function POIListings({type, POIs, selectedPOI, updateSelectedPOI}) {
               distance={poi.distance}
               address={poi.address}
               selected={poi.id === selectedPOI.id}
-              updateSelectedPOI={updateSelectedPOI} />
+              updateSelectedPOI={updateSelectedPOI}
+              removePOI={removePOI} 
+              currTrip={currTrip}
+              />
           )})}
         </section>
    );

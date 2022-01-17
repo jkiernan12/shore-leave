@@ -1,5 +1,5 @@
 import React from 'react';
-import POICard from './POICard';
+import POICard from '../POICard/POICard.js';
 
 function MarinaListings({type, marinas, selectedMarina, updateSelectedMarina}) {
   return ( 

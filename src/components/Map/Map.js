@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
 import './Map.css'
 import MapEvents from './MapEvents'
-import Button from './Button'
-import logo from './logo.svg'
+import Button from '../Button/Button'
+import logo from '../../logo.svg'
 import L from 'leaflet';
 
 
-function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, selectedPOI, highlightSelectedPOI, stage }) {
+function Map({ marinas, setMarinas, updateSelectedMarina, selectedMarina, POIs, selectedPOI, highlightSelectedPOI, stage }) {
   const myCoord = {
     center: [41, -71],
     zoom: 8
@@ -50,7 +50,7 @@ function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, s
         )
       })
       }
-      {POIs && stage === 'locations' && POIs.map(({location, id}) => {
+      {(stage === 'locations' || stage === 'existing') && POIs && POIs.map(({location, id}) => {
         return (
           <Marker 
           key={id} 
@@ -65,22 +65,7 @@ function Map({ fetchData, marinas, updateSelectedMarina, selectedMarina, POIs, s
         )
       })
       }
-      {POIs && stage === 'existing' && POIs.map(({location, id}) => {
-        return (
-          <Marker 
-          key={id} 
-          position={[location.lat, location.lon]} 
-          // icon={selectedMarina.id === id ? myIcon : undefined }
-          eventHandlers={{
-            click: (e) => {
-              highlightSelectedPOI(id)
-            },
-          }}
-      />
-        )
-      })
-      }
-      {stage === 'marina' && <MapEvents fetchData={fetchData} />}
+      {stage === 'marina' && <MapEvents setter={setMarinas} />}
     </MapContainer>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from './Button';
+import Button from '../Button/Button.js';
 import './Form.css'
 
 function Form({ searchPOI }) {

@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import { Routes, Route } from 'react-router';
 import React, { useState } from 'react';
-import MainPage from './MainPage';
-import TripPage from './TripPage'
+import MainPage from '../MainPage/MainPage.js';
+import TripPage from '../TripPage/TripPage.js'
 
 function App() {
   const [trips, setTrips] = useState([])

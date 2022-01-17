@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import POICard from './POICard';
+import POICard from '../POICard/POICard';
 
 function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip}) {
   return ( 

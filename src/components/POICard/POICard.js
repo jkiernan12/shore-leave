@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './POICard.css'
-import logo from './logo.svg'
-import Button from './Button';
+import logo from '../../logo.svg'
+import Button from '../Button/Button';
 
 function POICard({type, name, image, selected, id, rating, fuel, updateSelectedMarina, updateSelectedPOI, categories, distance, address, removePOI, currTrip}) {
   const selectedCard = useRef(null)
@@ -18,12 +18,14 @@ function POICard({type, name, image, selected, id, rating, fuel, updateSelectedM
     }
   }, [selected])
 
-  useEffect(() => {
-    if (currTrip && currTrip.destinations?.length) {
-    const isSaved = currTrip.destinations.some(dest => dest.id === id)
-    setSaved(isSaved)
-    }
-  }, [currTrip.destinations])
+  // useEffect(() => {
+  //   if (currTrip) {
+  //   if (currTrip.destinations?.length) {
+  //   const isSaved = currTrip.destinations.some(dest => dest.id === id)
+  //   setSaved(isSaved)
+  //   }
+  // }
+  // }, [currTrip.destinations])
 
   if (type === 'marina') {
   return ( 

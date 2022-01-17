@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './TripPage.css'
-import Nav from './Nav';
-import Map from './Map';
-import Form from './Form';
-import POICard from './POICard';
-import POIListings from './POIListings';
-import DestinationForm from './DestinationForm'
-import MarinaListings from './MarinaListings';
+import Nav from '../Nav/Nav';
+import Map from '../Map/Map';
+import Form from '../Form/Form';
+import POICard from '../POICard/POICard';
+import POIListings from '../POIListings/POIListings';
+import DestinationForm from '../DestinationForm/DestinationForm'
+import MarinaListings from '../MarinaListings/MarinaListings';
 import { useParams } from 'react-router'
 
 function TripPage({addTrip, editTrip, trips, stage, setStage}) {

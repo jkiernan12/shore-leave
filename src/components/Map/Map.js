@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
 import './Map.css'
 import MapEvents from './MapEvents'
-import Button from './Button'
-import logo from './logo.svg'
+import Button from '../Button/Button'
+import logo from '../../logo.svg'
 import L from 'leaflet';
 
 

@@ -9,7 +9,6 @@ function App() {
   const [stage, setStage] = useState('marina')
 
   function addTrip(newTrip) {
-    console.log('add trip runs')
     setTrips(trips => [...trips, newTrip])
   }
 

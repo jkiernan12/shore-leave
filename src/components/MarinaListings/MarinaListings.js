@@ -1,5 +1,6 @@
 import React from 'react';
 import POICard from '../POICard/POICard.js';
+import PropTypes from 'prop-types'
 
 function MarinaListings({type, marinas, selectedMarina, updateSelectedMarina}) {
   return ( 
@@ -18,6 +19,13 @@ function MarinaListings({type, marinas, selectedMarina, updateSelectedMarina}) {
           )})}
         </section>
    );
+}
+
+MarinaListings.propTypes = {
+  type: PropTypes.string,
+  marinas: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
+  selectedMarina: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  updateSelectedMarina: PropTypes.func.isRequired,
 }
 
 export default MarinaListings;

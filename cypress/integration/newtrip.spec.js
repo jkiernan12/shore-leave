@@ -86,7 +86,7 @@ describe('creating a trip', () => {
 
       cy.contains('Submit').click()
       cy.get('.POICard').should('exist')
-      .should('contain', 'Eel Pond')
+      .should('contain', 'Marion General')
     })
   })
   it('should let you search for destinations', () => {
@@ -111,7 +111,7 @@ describe('creating a trip', () => {
 
       cy.contains('Submit').click()
       cy.get('.POICard').should('exist')
-      .should('contain', 'Eel Pond')
+      .should('contain', 'Marion General')
     })
   })
 })
@@ -141,7 +141,7 @@ describe('adding destinations', () => {
   })
   
   it('should hide select button and show delete button after clicking', () => {
-    cy.fixture('marinas.json').then(data => {
+    cy.fixture('pois.json').then(data => {
       cy.intercept('GET', 'https://api.foursquare.com/v3/*', data)
       cy.contains('Submit').click()
       cy.get('.POICard > button').each((button) => {
@@ -172,7 +172,7 @@ describe('adding destinations', () => {
 
       cy.contains('Woods Hole').should('exist').should('contain', '02-24').click()
 
-      cy.contains('Eel Pond Market').should('exist')
+      cy.contains('Eel Pond').should('exist')
       cy.contains('Woods Hole Market & Provisions').should('exist')
       cy.get('.POICard').should('have.length', 3)
     })
@@ -197,6 +197,46 @@ describe('adding destinations', () => {
       cy.contains('Woods Hole').click()
 
       cy.contains('Eel Pond').should('not.exist')
+    })
+  })
+
+  it('should let you create multiple trips', () => {
+    cy.fixture('pois.json').then(data => {
+      cy.intercept('GET', 'https://api.foursquare.com/v3/*', data)
+      cy.contains('Submit').click()
+      cy.get('.POICard > button').each((button) => {
+        button.click()
+      })
+      cy.contains('Home').click()
+      cy.contains('New Trip').click()
+      cy.get('.POICard:first').next().contains('Select').click()
+      cy.get('input[type=date]').click().type('1995-02-26')
+
+      cy.contains('Submit').click()
+
+      cy.get('select[name=locomotion]').should('have.value', 'walk')
+      .select('Bike')
+
+      cy.get('input[type=number]').click().clear().type('30')
+
+      cy.get('select[name=poi]')
+      .select('Grocery Stores')
+
+      cy.contains('Submit').click()
+      cy.get('.POICard').should('exist')
+      cy.get('.POICard button').each((button) => {
+        button.click()
+      })
+
+      cy.contains('Home').click()
+
+      cy.get('.TripCard').should('have.length', 2)
+
+      cy.contains('Dockside Marina').should('exist')
+      .click()
+
+      cy.get('.POICard').should('have.length', 5)
+
     })
   })
 

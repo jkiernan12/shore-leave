@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Button from '../Button/Button.js';
 import './Form.css'
 import { searchPOI } from '../../api-calls.js';
+import PropTypes from 'prop-types'
 
 function Form({ setter, currTrip }) {
   const [locomotion, setLocomotion] = useState('walk')
@@ -39,6 +39,12 @@ function Form({ setter, currTrip }) {
       <button onClick={handlePOIClick}>Submit</button>
     </form>
    );
+}
+
+Form.propTypes = {
+  currTrip: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  setter: PropTypes.func,
+
 }
 
 export default Form;

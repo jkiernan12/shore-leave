@@ -2,14 +2,53 @@ import './App.css';
 import { Routes, Route } from 'react-router';
 import React, { useState } from 'react';
 import MainPage from '../MainPage/MainPage.js';
-import TripPage from '../TripPage/TripPage.js'
+import ViewPage from '../ViewPage/ViewPage';
+import EditPage from '../EditPage/EditPage';
+import NewPage from '../NewPage/NewPage';
 
 function App() {
   const [trips, setTrips] = useState([])
-  const [stage, setStage] = useState('marina')
+  const [POIs, setPOIs] = useState('')
+  const [selectedPOI, setSelectedPOI] = useState('')
+  const [currTrip, setCurrTrip] = useState('')
+
+  function highlightSelectedPOI(id) {
+    setSelectedPOI(POIs.find(poi => poi.id === id))
+  }
+
+  function updateSelectedPOI(id) {
+    const currPOI = POIs.find(poi => poi.id === id)
+    let updatedDestinations = currTrip.destinations
+    const isDupe = currTrip.destinations.some(destination => destination.id === id)
+    if (!isDupe) {
+      updatedDestinations = {
+        destinations: [...currTrip.destinations, currPOI]
+      }
+      const newTrip = {...currTrip, ...updatedDestinations}
+      setCurrTrip(newTrip) 
+      if (!trips[0] || checkTrip(newTrip.id)) {
+        addTrip(newTrip)
+      } else if (!checkTrip(newTrip.id)) {
+        editTrip(newTrip, currPOI)
+      } 
+    } 
+  }
+
+  function removePOI(id) {
+    const newTrips = [...trips]
+    const oldTrip = newTrips.find(trip => trip.id === currTrip.id)
+    const oldDestinationIndex = oldTrip.destinations.findIndex(destination => destination.id === id)
+    oldTrip.destinations.splice(oldDestinationIndex, 1)
+    setTrips(() => ([...newTrips]))
+    setCurrTrip(oldTrip)
+  }
 
   function addTrip(newTrip) {
     setTrips(trips => [...trips, newTrip])
+  }
+
+  function checkTrip(id) {
+    return !(trips.some(trip => trip.id === id))
   }
 
   function editTrip(newTrip, newPOI) {
@@ -25,9 +64,39 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<MainPage trips={trips} setStage={setStage} />} />
-        <Route path='/new-trip' element={<TripPage addTrip={addTrip} editTrip={editTrip} trips={trips} setTrips={setTrips} stage={stage} setStage={setStage} />}/>
-        <Route path='/trips/:tripID' element={<TripPage addTrip={addTrip} editTrip={editTrip} trips={trips} setTrips={setTrips} setStage={setStage} stage={stage} />} />
+        <Route path='/' 
+        element={<MainPage trips={trips} />} />
+
+        <Route path='/new-trip' 
+        element={<NewPage addTrip={addTrip} 
+        checkTrip={checkTrip} />}/>
+
+        <Route path='/edit/:tripID' 
+        element={<EditPage 
+        trips={trips} 
+        POIs={POIs} 
+        setPOIs={setPOIs}
+        selectedPOI={selectedPOI}
+        currTrip={currTrip}
+        setCurrTrip={setCurrTrip} 
+        highlightSelectedPOI={highlightSelectedPOI}
+        updateSelectedPOI={updateSelectedPOI}
+        removePOI={removePOI}
+        />} />
+
+        <Route path='/view/:tripID' 
+        element={<ViewPage 
+        trips={trips} 
+        POIs={POIs} 
+        setPOIs={setPOIs}
+        selectedPOI={selectedPOI}
+        currTrip={currTrip}
+        setCurrTrip={setCurrTrip} 
+        highlightSelectedPOI={highlightSelectedPOI}
+        updateSelectedPOI={updateSelectedPOI}
+        removePOI={removePOI}
+        />} />
+
       </Routes>
     </div>
   );

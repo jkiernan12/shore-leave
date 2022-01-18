@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import './TripPage.css'
+import '../TripPage/TripPage.css'
 import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
+import Form from '../Form/Form';
 import POIListings from '../POIListings/POIListings';
 import { useParams } from 'react-router'
-import NewPage from '../NewPage/NewPage';
-import EditPage from '../EditPage/EditPage';
 
-function TripPage({addTrip, editTrip, trips, setTrips, stage, setStage, checkTrip}) {
-  const [marinas, setMarinas] = useState('')
-  const [selectedMarina, setSelectedMarina] = useState('')
+
+function EditPage({addTrip, editTrip, trips, setTrips, stage, checkTrip}) {
   const [POIs, setPOIs] = useState('')
   const [selectedPOI, setSelectedPOI] = useState('')
   const [currTrip, setCurrTrip] = useState('')
@@ -17,17 +15,12 @@ function TripPage({addTrip, editTrip, trips, setTrips, stage, setStage, checkTri
   const { tripID } = useParams()
 
   useEffect(() => {
-    //need to update currTrip no matter what if tripID is valid && it trips
     if (tripID) {
       const matchedTrip = trips.find(trip => trip.id === tripID)
       setCurrTrip(matchedTrip)
       setPOIs(matchedTrip.destinations)
   }
   }, [tripID])
-
-  function updateSelectedMarina(id) {
-    setSelectedMarina(marinas.find(marina => marina.id === id))
-  }
 
   function highlightSelectedPOI(id) {
     setSelectedPOI(POIs.find(poi => poi.id === id))
@@ -43,13 +36,11 @@ function TripPage({addTrip, editTrip, trips, setTrips, stage, setStage, checkTri
       }
       const newTrip = {...currTrip, ...updatedDestinations}
       setCurrTrip(newTrip) 
-      if (!trips[0]) {
+      if (!trips[0] || checkTrip(newTrip.id)) {
         addTrip(newTrip)
-      } else if (trips.find(trip => trip.id === currTrip.id)) {
+      } else if (!checkTrip(newTrip.id)) {
         editTrip(newTrip, currPOI)
-      } else if (!trips.find(trip => trip.id === currTrip.id)) {
-        addTrip(newTrip)
-      }
+      } 
     } 
   }
 
@@ -61,49 +52,32 @@ function TripPage({addTrip, editTrip, trips, setTrips, stage, setStage, checkTri
     setTrips(() => ([...newTrips]))
     setCurrTrip(oldTrip)
   }
+
   return ( 
-    <>
-      {stage === 'marina' && <NewPage addTrip={addTrip} stage={stage} setStage={setStage} checkTrip={checkTrip} />
-      }
-      {stage === 'locations' &&  <EditPage 
-          stage={stage}
-          trips={trips}
-          checkTrip={checkTrip}
-          addTrip={addTrip}
-          editTrip={editTrip}
-          setTrips={setTrips}
-      />
-      }
-      {stage === 'existing' && currTrip &&     <>
+<>
       <Nav />
-      <main className='TripPage'>
-        <Map className='Map' 
-          marinas={marinas} 
-          selectedMarina={selectedMarina}
-          updateSelectedMarina={updateSelectedMarina}
-          POIs={POIs}
-          selectedPOI={selectedPOI}
-          highlightSelectedPOI={highlightSelectedPOI}
-          stage={stage}
-          setMarinas={setMarinas} />
+    <main className='TripPage'>
+      <Map className='Map' 
+        POIs={POIs}
+        selectedPOI={selectedPOI}
+        highlightSelectedPOI={highlightSelectedPOI}
+        stage={stage} />
       <section className='TripPage--right'>
-      <h1>{currTrip.marina.name}</h1>
-      <p>{currTrip.date}</p>
-      <button onClick={() => setStage('locations')}>Edit</button>
+        <Form setter={setPOIs}
+          currTrip={currTrip}
+        />
         <POIListings 
-          POIs={currTrip.destinations}
+          POIs={POIs}
           selectedPOI={selectedPOI}
           updateSelectedPOI={updateSelectedPOI}
           type='poi'
           removePOI={removePOI}
-          currTrip={currTrip}
-           />
+          currTrip={currTrip} />
       </section>
       </main>
       </>
-      } 
-      </>
+      
    );
 }
 
-export default TripPage
+export default EditPage

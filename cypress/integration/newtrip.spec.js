@@ -61,10 +61,6 @@ describe('creating a trip', () => {
       cy.contains('How will you travel')
       .should('exist')
 
-      // cy.contains('Home').click()
-      // cy.contains('Woods Hole').should('exist')
-      // cy.contains('2/24').should('exist')
-
     })
   })
 

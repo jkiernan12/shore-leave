@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import './DestinationForm.css'
 
-function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage, setCurrTrip}) {
+function DestinationForm({selectedMarina, setSelectedMarina, addTrip, checkTrip, setStage}) {
   const [date, setDate] = useState('')
   let navigate = useNavigate()
 
@@ -15,7 +15,9 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, setStage, 
         marina: selectedMarina,
         destinations: []
       }
-      setCurrTrip(currTrip)
+      if (checkTrip(currTrip.id)) {
+        addTrip(currTrip)
+      } 
       setSelectedMarina('')
       setStage('locations')
       navigate(`/trips/${currTrip.id}`)

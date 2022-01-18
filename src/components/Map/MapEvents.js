@@ -14,6 +14,10 @@ function cleanMapBounds(map) {
 }
 
 function MapEvents({setter}) {
+  useEffect(() => {
+    fetchMarinas(cleanMapBounds(map), setter)
+  }, [])
+
   const map = useMapEvents({
     moveend: () => {
       fetchMarinas(cleanMapBounds(map), setter)

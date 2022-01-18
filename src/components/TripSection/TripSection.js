@@ -11,7 +11,7 @@ function TripSection({title, trips}) {
       <div className='Trips--container'>
         {trips.length > 0 ? trips.map(trip => {
           return (
-            <TripCard id={trip.id} title={trip.marina.name} date={trip.date} image={logo} />
+            <TripCard id={trip.id} title={trip.marina.name} date={trip.date} image={trip.marina.image_thumb ? trip.marina.image_thumb : logo} />
           )
         }) : 'Hmm looks like there is nothing here'}
       </div>

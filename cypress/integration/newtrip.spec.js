@@ -56,9 +56,9 @@ describe('creating a trip', () => {
 
       cy.get('input[type=date]').click().type('1995-02-24')
 
-      cy.contains('Submit').click()
+      cy.contains('Save').click()
 
-      cy.contains('How will you travel')
+      cy.contains('Travel type')
       .should('exist')
 
     })
@@ -73,7 +73,7 @@ describe('creating a trip', () => {
 
       cy.get('input[type=date]').click().type('1995-02-24')
 
-      cy.contains('Submit').click()
+      cy.contains('Save').click()
 
       cy.get('select[name=locomotion]').should('have.value', 'walk')
       .select('Bike').should('have.value', 'bike')
@@ -84,7 +84,7 @@ describe('creating a trip', () => {
       cy.get('select[name=poi]').should('have.value', 'restaurants')
       .select('Grocery Stores').should('have.value', 'grocery-stores')
 
-      cy.contains('Submit').click()
+      cy.contains('Search').click()
       cy.get('.POICard').should('exist')
       .should('contain', 'Marion General')
     })
@@ -98,7 +98,7 @@ describe('creating a trip', () => {
 
       cy.get('input[type=date]').click().type('1995-02-24')
 
-      cy.contains('Submit').click()
+      cy.contains('Save').click()
 
       cy.get('select[name=locomotion]').should('have.value', 'walk')
       .select('Bike').should('have.value', 'bike')
@@ -109,7 +109,7 @@ describe('creating a trip', () => {
       cy.get('select[name=poi]').should('have.value', 'restaurants')
       .select('Grocery Stores').should('have.value', 'grocery-stores')
 
-      cy.contains('Submit').click()
+      cy.contains('Search').click()
       cy.get('.POICard').should('exist')
       .should('contain', 'Marion General')
     })
@@ -127,7 +127,7 @@ describe('adding destinations', () => {
 
       cy.get('input[type=date]').click().type('1995-02-24')
 
-      cy.contains('Submit').click()
+      cy.contains('Save').click()
 
       cy.get('select[name=locomotion]').should('have.value', 'walk')
       .select('Bike')
@@ -143,7 +143,7 @@ describe('adding destinations', () => {
   it('should hide select button and show delete button after clicking', () => {
     cy.fixture('pois.json').then(data => {
       cy.intercept('GET', 'https://api.foursquare.com/v3/*', data)
-      cy.contains('Submit').click()
+      cy.contains('Search').click()
       cy.get('.POICard > button').each((button) => {
         button.click()
       })
@@ -161,7 +161,7 @@ describe('adding destinations', () => {
   it('should save selected destinations', () => {
     cy.fixture('pois.json').then(data => {
       cy.intercept('GET', 'https://api.foursquare.com/v3/*', data)
-      cy.contains('Submit').click()
+      cy.contains('Search').click()
       cy.get('.POICard > button').each((button) => {
         button.click()
       })
@@ -181,7 +181,7 @@ describe('adding destinations', () => {
   it('should delete destinations from an existing trip', () => {
     cy.fixture('pois.json').then(data => {
       cy.intercept('GET', 'https://api.foursquare.com/v3/*', data)
-      cy.contains('Submit').click()
+      cy.contains('Search').click()
       cy.get('.POICard > button').each((button) => {
         button.click()
       })
@@ -203,7 +203,7 @@ describe('adding destinations', () => {
   it('should let you create multiple trips', () => {
     cy.fixture('pois.json').then(data => {
       cy.intercept('GET', 'https://api.foursquare.com/v3/*', data)
-      cy.contains('Submit').click()
+      cy.contains('Search').click()
       cy.get('.POICard > button').each((button) => {
         button.click()
       })
@@ -212,7 +212,7 @@ describe('adding destinations', () => {
       cy.get('.POICard:first').next().contains('Select').click()
       cy.get('input[type=date]').click().type('1995-02-26')
 
-      cy.contains('Submit').click()
+      cy.contains('Save').click()
 
       cy.get('select[name=locomotion]').should('have.value', 'walk')
       .select('Bike')
@@ -222,7 +222,7 @@ describe('adding destinations', () => {
       cy.get('select[name=poi]')
       .select('Grocery Stores')
 
-      cy.contains('Submit').click()
+      cy.contains('Search').click()
       cy.get('.POICard').should('exist')
       cy.get('.POICard button').each((button) => {
         button.click()

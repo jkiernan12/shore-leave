@@ -25,3 +25,9 @@
 .highlighted__true {
   border: 3px solid rgb(24, 24, 121);
 }
+
+@media (max-width: 400px) {
+  .POICard {
+    flex-direction: column;
+  }
+}

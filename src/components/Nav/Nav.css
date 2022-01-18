@@ -12,9 +12,17 @@
   justify-content: stretch;
   align-items: center;
   margin: 0 1%;
+  max-width: 600px;
   min-width: 33%;
 }
 
 .Header--logo {
   margin: 1%;
+}
+
+@media (max-width: 400px) {
+  .Header--logo {
+    margin-block-end: 0;
+    width: 25%;
+  }
 }

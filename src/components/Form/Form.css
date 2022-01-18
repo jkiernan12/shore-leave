@@ -1,7 +1,21 @@
 .Form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
-  align-items: flex-end;
+  align-items: center;
   margin: 2%;
-  height: 11%;
+  /* height: 11%; */
 }
+
+.return--button {
+  background-color: #d2ab2d ;
+  color:#262660;
+  max-width: 200px;
+  margin: 1%;
+}
+
+.Form--section {
+  display: flex;
+  flex-direction: column;
+}
+

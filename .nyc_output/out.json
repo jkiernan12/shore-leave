@@ -114,18 +114,18 @@
       }
     },
     "s": {
-      "0": 852
+      "0": 848
     },
     "f": {
-      "0": 852
+      "0": 848
     },
     "b": {
       "0": [
-        852,
-        852
+        848,
+        848
       ],
       "1": [
-        852,
+        848,
         0
       ]
     },
@@ -174,10 +174,10 @@
     },
     "branchMap": {},
     "s": {
-      "0": 426
+      "0": 424
     },
     "f": {
-      "0": 426
+      "0": 424
     },
     "b": {},
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
@@ -354,6 +354,42 @@
           }
         ],
         "line": 12
+      },
+      "1": {
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 84
+          },
+          "end": {
+            "line": 14,
+            "column": 140
+          }
+        },
+        "type": "cond-expr",
+        "locations": [
+          {
+            "start": {
+              "line": 14,
+              "column": 110
+            },
+            "end": {
+              "line": 14,
+              "column": 133
+            }
+          },
+          {
+            "start": {
+              "line": 14,
+              "column": 136
+            },
+            "end": {
+              "line": 14,
+              "column": 140
+            }
+          }
+        ],
+        "line": 14
       }
     },
     "s": {
@@ -369,10 +405,14 @@
       "0": [
         16,
         104
+      ],
+      "1": [
+        0,
+        18
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "536ba19b0048820484a1f24f36c4b29ebc658569"
+    "hash": "0c9f87371e39ec07a0dac84bd63aadcc64df59fd"
   },
   "/Users/johnkiernan/turing/3mod/shore-leave/src/components/MainPage/MainPage.js": {
     "path": "/Users/johnkiernan/turing/3mod/shore-leave/src/components/MainPage/MainPage.js",
@@ -1106,29 +1146,29 @@
       }
     },
     "s": {
-      "0": 33,
-      "1": 3300,
-      "2": 33,
-      "3": 876,
-      "4": 876,
-      "5": 191,
-      "6": 876,
+      "0": 34,
+      "1": 3400,
+      "2": 34,
+      "3": 908,
+      "4": 908,
+      "5": 198,
+      "6": 908,
       "7": 0,
-      "8": 876,
-      "9": 191,
-      "10": 876,
-      "11": 2942,
-      "12": 33,
+      "8": 908,
+      "9": 198,
+      "10": 908,
+      "11": 3052,
+      "12": 34,
       "13": 12,
       "14": 73,
       "15": 131,
       "16": 197
     },
     "f": {
-      "0": 33,
-      "1": 3300,
-      "2": 876,
-      "3": 2942,
+      "0": 34,
+      "1": 3400,
+      "2": 908,
+      "3": 3052,
       "4": 12,
       "5": 73,
       "6": 131,
@@ -1136,28 +1176,28 @@
     },
     "b": {
       "0": [
-        191,
-        685
+        198,
+        710
       ],
       "1": [
         0,
-        876
+        908
       ],
       "2": [
-        191,
-        685
+        198,
+        710
       ],
       "3": [
-        365,
-        511
+        378,
+        530
       ],
       "4": [
-        220,
-        656
+        228,
+        680
       ],
       "5": [
-        220,
-        656
+        228,
+        680
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
@@ -1467,21 +1507,21 @@
       "6": 12,
       "7": 12,
       "8": 48,
-      "9": 45,
-      "10": 45,
+      "9": 46,
+      "10": 46,
       "11": 0,
-      "12": 45
+      "12": 46
     },
     "f": {
       "0": 36,
       "1": 12,
       "2": 48,
-      "3": 45,
-      "4": 45
+      "3": 46,
+      "4": 46
     },
     "b": {
       "0": [
-        45,
+        46,
         0
       ]
     },
@@ -1777,23 +1817,23 @@
       "0": 36,
       "1": 36,
       "2": 36,
-      "3": 124,
+      "3": 122,
       "4": 21,
       "5": 20,
       "6": 1,
-      "7": 124,
+      "7": 122,
       "8": 15,
-      "9": 2,
-      "10": 124
+      "9": 1,
+      "10": 122
     },
     "f": {
       "0": 36,
-      "1": 124,
+      "1": 122,
       "2": 21,
       "3": 20,
       "4": 1,
       "5": 15,
-      "6": 2
+      "6": 1
     },
     "b": {},
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
@@ -2156,38 +2196,38 @@
       }
     },
     "s": {
-      "0": 366,
-      "1": 366,
-      "2": 366,
-      "3": 366,
-      "4": 366,
-      "5": 2080,
+      "0": 364,
+      "1": 364,
+      "2": 364,
+      "3": 364,
+      "4": 364,
+      "5": 2016,
       "6": 0,
       "7": 3738,
       "8": 0
     },
     "f": {
-      "0": 366,
-      "1": 2080,
+      "0": 364,
+      "1": 2016,
       "2": 0,
       "3": 3738,
       "4": 0
     },
     "b": {
       "0": [
-        366,
-        80,
-        80
+        364,
+        78,
+        78
       ],
       "1": [
-        366,
-        338,
+        364,
+        336,
         242,
         216
       ],
       "2": [
-        366,
-        124
+        364,
+        122
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
@@ -3104,14 +3144,14 @@
       }
     },
     "s": {
-      "0": 6056,
-      "1": 6056,
-      "2": 6056,
+      "0": 5992,
+      "1": 5992,
+      "2": 5992,
       "3": 18,
-      "4": 6056,
+      "4": 5992,
       "5": 670,
       "6": 18,
-      "7": 6056,
+      "7": 5992,
       "8": 2373,
       "9": 1780,
       "10": 23948,
@@ -3120,8 +3160,8 @@
       "13": 8,
       "14": 61,
       "15": 61,
-      "16": 6056,
-      "17": 2080,
+      "16": 5992,
+      "17": 2016,
       "18": 18,
       "19": 3976,
       "20": 61,
@@ -3129,7 +3169,7 @@
       "22": 22
     },
     "f": {
-      "0": 6056,
+      "0": 5992,
       "1": 18,
       "2": 670,
       "3": 2373,
@@ -3154,20 +3194,20 @@
         1853
       ],
       "3": [
-        2080,
+        2016,
         3976
       ],
       "4": [
-        512,
-        1568
+        496,
+        1520
       ],
       "5": [
-        2080,
-        448
+        2016,
+        434
       ],
       "6": [
-        2080,
-        848
+        2016,
+        822
       ],
       "7": [
         0,
@@ -3422,27 +3462,27 @@
           "column": 2
         },
         "end": {
-          "line": 44,
+          "line": 47,
           "column": 5
         }
       },
       "9": {
         "start": {
-          "line": 32,
+          "line": 33,
           "column": 29
         },
         "end": {
-          "line": 32,
+          "line": 33,
           "column": 61
         }
       },
       "10": {
         "start": {
-          "line": 47,
+          "line": 50,
           "column": 0
         },
         "end": {
-          "line": 57,
+          "line": 60,
           "column": 1
         }
       }
@@ -3466,7 +3506,7 @@
             "column": 130
           },
           "end": {
-            "line": 45,
+            "line": 48,
             "column": 1
           }
         },
@@ -3524,25 +3564,25 @@
         "name": "(anonymous_3)",
         "decl": {
           "start": {
-            "line": 32,
+            "line": 33,
             "column": 23
           },
           "end": {
-            "line": 32,
+            "line": 33,
             "column": 24
           }
         },
         "loc": {
           "start": {
-            "line": 32,
+            "line": 33,
             "column": 29
           },
           "end": {
-            "line": 32,
+            "line": 33,
             "column": 61
           }
         },
-        "line": 32
+        "line": 33
       }
     },
     "branchMap": {
@@ -3589,7 +3629,7 @@
             "column": 6
           },
           "end": {
-            "line": 41,
+            "line": 44,
             "column": 16
           }
         },
@@ -3611,7 +3651,7 @@
               "column": 18
             },
             "end": {
-              "line": 41,
+              "line": 44,
               "column": 16
             }
           }
@@ -3649,128 +3689,128 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "706a22ce990da839a6f77ee3c4710024e2109b50"
+    "hash": "4dc95beb199172a459bbbb9082c5ec024a0855b0"
   },
   "/Users/johnkiernan/turing/3mod/shore-leave/src/components/Form/Form.js": {
     "path": "/Users/johnkiernan/turing/3mod/shore-leave/src/components/Form/Form.js",
     "statementMap": {
       "0": {
         "start": {
-          "line": 7,
+          "line": 8,
           "column": 38
         },
         "end": {
-          "line": 7,
+          "line": 8,
           "column": 54
         }
       },
       "1": {
         "start": {
-          "line": 8,
+          "line": 9,
           "column": 38
         },
         "end": {
-          "line": 8,
+          "line": 9,
           "column": 49
         }
       },
       "2": {
         "start": {
-          "line": 9,
+          "line": 10,
           "column": 34
         },
         "end": {
-          "line": 9,
+          "line": 10,
           "column": 57
         }
       },
       "3": {
         "start": {
-          "line": 12,
+          "line": 13,
           "column": 4
         },
         "end": {
-          "line": 12,
+          "line": 13,
           "column": 22
         }
       },
       "4": {
         "start": {
-          "line": 13,
+          "line": 14,
           "column": 4
         },
         "end": {
-          "line": 15,
+          "line": 16,
           "column": 109
         }
       },
       "5": {
         "start": {
-          "line": 14,
+          "line": 15,
           "column": 18
         },
         "end": {
-          "line": 14,
+          "line": 15,
           "column": 30
         }
       },
       "6": {
         "start": {
-          "line": 15,
+          "line": 16,
           "column": 18
         },
         "end": {
-          "line": 15,
+          "line": 16,
           "column": 108
         }
       },
       "7": {
         "start": {
-          "line": 18,
+          "line": 19,
           "column": 2
         },
         "end": {
-          "line": 43,
+          "line": 47,
           "column": 5
         }
       },
       "8": {
         "start": {
-          "line": 22,
+          "line": 23,
           "column": 70
         },
         "end": {
-          "line": 22,
+          "line": 23,
           "column": 99
         }
       },
       "9": {
         "start": {
-          "line": 30,
+          "line": 31,
           "column": 92
         },
         "end": {
-          "line": 30,
+          "line": 31,
           "column": 121
         }
       },
       "10": {
         "start": {
-          "line": 34,
+          "line": 35,
           "column": 61
         },
         "end": {
-          "line": 34,
+          "line": 35,
           "column": 88
         }
       },
       "11": {
         "start": {
-          "line": 46,
+          "line": 50,
           "column": 0
         },
         "end": {
-          "line": 51,
+          "line": 55,
           "column": 1
         }
       }
@@ -3780,169 +3820,169 @@
         "name": "Form",
         "decl": {
           "start": {
-            "line": 6,
+            "line": 7,
             "column": 9
           },
           "end": {
-            "line": 6,
+            "line": 7,
             "column": 13
           }
         },
         "loc": {
           "start": {
-            "line": 6,
+            "line": 7,
             "column": 53
           },
           "end": {
-            "line": 44,
+            "line": 48,
             "column": 1
           }
         },
-        "line": 6
+        "line": 7
       },
       "1": {
         "name": "handlePOIClick",
         "decl": {
           "start": {
-            "line": 11,
+            "line": 12,
             "column": 11
           },
           "end": {
-            "line": 11,
+            "line": 12,
             "column": 25
           }
         },
         "loc": {
           "start": {
-            "line": 11,
+            "line": 12,
             "column": 29
           },
           "end": {
-            "line": 16,
+            "line": 17,
             "column": 3
           }
         },
-        "line": 11
+        "line": 12
       },
       "2": {
         "name": "(anonymous_2)",
         "decl": {
           "start": {
-            "line": 14,
+            "line": 15,
             "column": 10
           },
           "end": {
-            "line": 14,
+            "line": 15,
             "column": 11
           }
         },
         "loc": {
           "start": {
-            "line": 14,
+            "line": 15,
             "column": 18
           },
           "end": {
-            "line": 14,
+            "line": 15,
             "column": 30
           }
         },
-        "line": 14
+        "line": 15
       },
       "3": {
         "name": "(anonymous_3)",
         "decl": {
           "start": {
-            "line": 15,
+            "line": 16,
             "column": 11
           },
           "end": {
-            "line": 15,
+            "line": 16,
             "column": 12
           }
         },
         "loc": {
           "start": {
-            "line": 15,
+            "line": 16,
             "column": 18
           },
           "end": {
-            "line": 15,
+            "line": 16,
             "column": 108
           }
         },
-        "line": 15
+        "line": 16
       },
       "4": {
         "name": "(anonymous_4)",
         "decl": {
           "start": {
-            "line": 22,
+            "line": 23,
             "column": 63
           },
           "end": {
-            "line": 22,
+            "line": 23,
             "column": 64
           }
         },
         "loc": {
           "start": {
-            "line": 22,
+            "line": 23,
             "column": 70
           },
           "end": {
-            "line": 22,
+            "line": 23,
             "column": 99
           }
         },
-        "line": 22
+        "line": 23
       },
       "5": {
         "name": "(anonymous_5)",
         "decl": {
           "start": {
-            "line": 30,
+            "line": 31,
             "column": 85
           },
           "end": {
-            "line": 30,
+            "line": 31,
             "column": 86
           }
         },
         "loc": {
           "start": {
-            "line": 30,
+            "line": 31,
             "column": 92
           },
           "end": {
-            "line": 30,
+            "line": 31,
             "column": 121
           }
         },
-        "line": 30
+        "line": 31
       },
       "6": {
         "name": "(anonymous_6)",
         "decl": {
           "start": {
-            "line": 34,
+            "line": 35,
             "column": 54
           },
           "end": {
-            "line": 34,
+            "line": 35,
             "column": 55
           }
         },
         "loc": {
           "start": {
-            "line": 34,
+            "line": 35,
             "column": 61
           },
           "end": {
-            "line": 34,
+            "line": 35,
             "column": 88
           }
         },
-        "line": 34
+        "line": 35
       }
     },
     "branchMap": {},
@@ -3971,7 +4011,7 @@
     },
     "b": {},
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "11dce617a2e814ba68ab55e6a13aa98bd35059ba"
+    "hash": "9c334a889ce2f0199e17df81f84fc40e11fc3761"
   },
   "/Users/johnkiernan/turing/3mod/shore-leave/src/components/EditPage/EditPage.js": {
     "path": "/Users/johnkiernan/turing/3mod/shore-leave/src/components/EditPage/EditPage.js",
@@ -4062,17 +4102,17 @@
           "column": 2
         },
         "end": {
-          "line": 50,
+          "line": 51,
           "column": 5
         }
       },
       "9": {
         "start": {
-          "line": 53,
+          "line": 54,
           "column": 0
         },
         "end": {
-          "line": 63,
+          "line": 64,
           "column": 1
         }
       }
@@ -4096,7 +4136,7 @@
             "column": 130
           },
           "end": {
-            "line": 51,
+            "line": 52,
             "column": 1
           }
         },
@@ -4223,6 +4263,52 @@
           }
         ],
         "line": 38
+      },
+      "2": {
+        "loc": {
+          "start": {
+            "line": 39,
+            "column": 9
+          },
+          "end": {
+            "line": 39,
+            "column": 88
+          }
+        },
+        "type": "binary-expr",
+        "locations": [
+          {
+            "start": {
+              "line": 39,
+              "column": 9
+            },
+            "end": {
+              "line": 39,
+              "column": 13
+            }
+          },
+          {
+            "start": {
+              "line": 39,
+              "column": 17
+            },
+            "end": {
+              "line": 39,
+              "column": 34
+            }
+          },
+          {
+            "start": {
+              "line": 39,
+              "column": 38
+            },
+            "end": {
+              "line": 39,
+              "column": 88
+            }
+          }
+        ],
+        "line": 39
       }
     },
     "s": {
@@ -4250,10 +4336,15 @@
       "1": [
         214,
         0
+      ],
+      "2": [
+        214,
+        188,
+        28
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "8e0224b4454461b48a57afde6c6f5b3b7964a653"
+    "hash": "060802cb68dccb8316b83c60fa30b81b1326fed3"
   },
   "/Users/johnkiernan/turing/3mod/shore-leave/src/components/DestinationForm/DestinationForm.js": {
     "path": "/Users/johnkiernan/turing/3mod/shore-leave/src/components/DestinationForm/DestinationForm.js",
@@ -4600,8 +4691,8 @@
       }
     },
     "s": {
-      "0": 156,
-      "1": 156,
+      "0": 154,
+      "1": 154,
       "2": 14,
       "3": 14,
       "4": 14,
@@ -4609,12 +4700,12 @@
       "6": 14,
       "7": 14,
       "8": 14,
-      "9": 156,
+      "9": 154,
       "10": 16,
       "11": 22
     },
     "f": {
-      "0": 156,
+      "0": 154,
       "1": 14,
       "2": 16
     },
@@ -4632,8 +4723,8 @@
         0
       ],
       "3": [
-        156,
-        68
+        154,
+        66
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
@@ -4762,18 +4853,18 @@
       }
     },
     "s": {
-      "0": 124,
-      "1": 2080,
+      "0": 122,
+      "1": 2016,
       "2": 22
     },
     "f": {
-      "0": 124,
-      "1": 2080
+      "0": 122,
+      "1": 2016
     },
     "b": {
       "0": [
-        124,
-        80
+        122,
+        78
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
@@ -4966,23 +5057,23 @@
       }
     },
     "s": {
-      "0": 124,
-      "1": 124,
-      "2": 124,
+      "0": 122,
+      "1": 122,
+      "2": 122,
       "3": 18,
       "4": 19,
-      "5": 124,
+      "5": 122,
       "6": 22
     },
     "f": {
-      "0": 124,
+      "0": 122,
       "1": 18,
       "2": 19
     },
     "b": {
       "0": [
-        124,
-        6
+        122,
+        4
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",

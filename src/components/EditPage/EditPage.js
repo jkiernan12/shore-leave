@@ -36,6 +36,7 @@ function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
           setErrorMessage={setErrorMessage}
         />
         {errorMessage && <p>{errorMessage}</p>}
+        {POIs && POIs.length === 0 && <p>Hmm, no matches. Try expanding your search.</p>}
         <POIListings 
           POIs={POIs}
           selectedPOI={selectedPOI}

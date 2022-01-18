@@ -27,9 +27,12 @@ function ViewPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
           selectedPOI={selectedPOI}
           highlightSelectedPOI={highlightSelectedPOI} />
      {currTrip && <section className='TripPage--right'>
+     <div className='ViewPage--info'>
       <h1>{currTrip.marina.name}</h1>
       <p>{currTrip.date}</p>
       <button onClick={() => navigate(`/edit/${currTrip.id}`)}>Edit</button>
+     </div>
+
         <POIListings 
           POIs={currTrip.destinations}
           selectedPOI={selectedPOI}

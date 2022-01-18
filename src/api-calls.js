@@ -14,9 +14,15 @@ function searchPOI({locomotion, travelTime, interest}, trip, setter) {
     'hardware-stores': 17090,
     'entertainment': 10000
   }
+
+  const locomotionMap = {
+    'walk': 80,
+    'bike': 400,
+    'other': 133
+  }
   const currLocationStr = `${trip.marina.location.lat},${trip.marina.location.lon}`
 
-  const url = `https://api.foursquare.com/v3/places/search?ll=${currLocationStr}&radius=${travelTime * 80}&categories=${POIMap[interest]}&limit=50&session_token=${process.env.REACT_APP_FSQ_SESSION}`
+  const url = `https://api.foursquare.com/v3/places/search?ll=${currLocationStr}&radius=${travelTime * locomotionMap[locomotion]}&categories=${POIMap[interest]}&limit=50&session_token=${process.env.REACT_APP_FSQ_SESSION}`
   const headers = {
     headers: {
       Authorization: process.env.REACT_APP_FSQ_KEY

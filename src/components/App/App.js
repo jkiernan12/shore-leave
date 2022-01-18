@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainPage from '../MainPage/MainPage.js';
 import ViewPage from '../ViewPage/ViewPage';
 import EditPage from '../EditPage/EditPage';
@@ -12,6 +12,17 @@ function App() {
   const [POIs, setPOIs] = useState('')
   const [selectedPOI, setSelectedPOI] = useState('')
   const [currTrip, setCurrTrip] = useState('')
+  
+  useEffect(() => {
+    const retrievedTrips = JSON.parse(localStorage.getItem('savedTrips'))
+    if (retrievedTrips?.length) {
+      setTrips(retrievedTrips)
+    } 
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('savedTrips', JSON.stringify(trips))
+  }, [trips])
 
   function highlightSelectedPOI(id) {
     setSelectedPOI(POIs.find(poi => poi.id === id))

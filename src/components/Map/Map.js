@@ -8,7 +8,7 @@ import L from 'leaflet';
 import { useLocation } from 'react-router'
 
 
-function Map({ marinas, setMarinas, updateSelectedMarina, POIs, highlightSelectedPOI }) {
+function Map({ marinas, setMarinas, updateSelectedMarina, POIs, highlightSelectedPOI, setErrorMessage }) {
   let currentPage = useLocation()
 
   const myCoord = {
@@ -68,7 +68,8 @@ function Map({ marinas, setMarinas, updateSelectedMarina, POIs, highlightSelecte
         )
       })
       }
-      {currentPage.pathname.includes('new') && <MapEvents setter={setMarinas} />}
+      {currentPage.pathname.includes('new') && <MapEvents setter={setMarinas}
+      setErrorMessage={setErrorMessage} />}
     </MapContainer>
   )
 }

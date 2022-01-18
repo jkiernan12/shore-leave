@@ -235,7 +235,7 @@ describe('adding destinations', () => {
       cy.contains('Dockside Marina').should('exist')
       .click()
 
-      cy.get('.POICard').should('have.length', 5)
+      cy.get('.POICard').should('have.length', 40)
 
     })
   })

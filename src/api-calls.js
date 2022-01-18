@@ -4,7 +4,7 @@ function fetchMarinas({north, east, south, west}, setter) {
   const url = `https://api.marinas.com/v1/points/search?bounds[ne][lat]=${north}
   &bounds[ne][lon]=${east}&bounds[sw][lat]=${south}&bounds[sw][lon]=${west}`
 
-  fetchData(cleanMarinaData, setter, url)
+  return fetchData(cleanMarinaData, setter, url)
 }
 
 function searchPOI({locomotion, travelTime, interest}, trip, setter) {
@@ -28,19 +28,19 @@ function searchPOI({locomotion, travelTime, interest}, trip, setter) {
       Authorization: process.env.REACT_APP_FSQ_KEY
     }
   }
-  fetchData(cleanPOIData, setter, url, headers)
+  return fetchData(cleanPOIData, setter, url, headers)
   }
 
   function fetchData(cleaner, setter, url, headers) {
-    if (headers) {
-      fetch(url, headers)
-      .then(res => res.json())
-      .then(data => setter(cleaner(data)))
-    } else {
-      fetch(url)
-      .then(res => res.json())
-      .then(data => setter(cleaner(data)))
-    }
+      return fetch(url, headers)
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw 'darn'
+        }
+      })
+      .then(data => cleaner(data))
   }
 
   export {fetchMarinas, searchPOI}

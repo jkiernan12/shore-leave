@@ -9,6 +9,7 @@ import PropTypes from 'prop-types'
 function NewPage({addTrip, checkTrip}) {
   const [marinas, setMarinas] = useState('')
   const [selectedMarina, setSelectedMarina] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   function updateSelectedMarina(id) {
     setSelectedMarina(marinas.find(marina => marina.id === id))
@@ -22,13 +23,15 @@ function NewPage({addTrip, checkTrip}) {
         marinas={marinas} 
         selectedMarina={selectedMarina}
         updateSelectedMarina={updateSelectedMarina}
-        setMarinas={setMarinas} />
+        setMarinas={setMarinas}
+        setErrorMessage={setErrorMessage} />
       <section className='TripPage--right'>
         <DestinationForm 
         selectedMarina={selectedMarina} 
         setSelectedMarina={setSelectedMarina}
         addTrip={addTrip}
         checkTrip={checkTrip} />
+        {errorMessage && <p>{errorMessage}</p>}
         <MarinaListings 
           marinas={marinas}
           selectedMarina={selectedMarina}

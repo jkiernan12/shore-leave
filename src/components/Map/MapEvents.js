@@ -13,14 +13,24 @@ function cleanMapBounds(map) {
   }
 }
 
-function MapEvents({setter}) {
+function MapEvents({setter, setErrorMessage}) {
   useEffect(() => {
+
     fetchMarinas(cleanMapBounds(map), setter)
+    .then(data => setter(data))
+    .catch(err => {
+      setErrorMessage('There was an issue connecting with the database. Please try again later')
+    }
+    )
   }, [])
 
   const map = useMapEvents({
     moveend: () => {
       fetchMarinas(cleanMapBounds(map), setter)
+      .catch(err => {
+        setErrorMessage('There was an issue connecting with the database. Please try again later')
+      }
+      )
     },
   })
   return null

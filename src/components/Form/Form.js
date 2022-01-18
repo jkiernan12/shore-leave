@@ -3,7 +3,7 @@ import './Form.css'
 import { searchPOI } from '../../api-calls.js';
 import PropTypes from 'prop-types'
 
-function Form({ setter, currTrip }) {
+function Form({ setter, currTrip, setErrorMessage }) {
   const [locomotion, setLocomotion] = useState('walk')
   const [travelTime, setTravelTime] = useState(1)
   const [interest, setInterest] = useState('restaurants')
@@ -11,6 +11,8 @@ function Form({ setter, currTrip }) {
   function handlePOIClick(e) {
     e.preventDefault()
     searchPOI({locomotion, travelTime, interest}, currTrip, setter)
+    .then(data => setter(data))
+    .catch(err => setErrorMessage('There was an issue connecting with the database. Please try again later'))
   }
 
   return ( 
@@ -44,6 +46,7 @@ function Form({ setter, currTrip }) {
 Form.propTypes = {
   currTrip: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   setter: PropTypes.func,
+  setErrorMessage: PropTypes.func
 
 }
 

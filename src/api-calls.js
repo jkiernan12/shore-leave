@@ -1,17 +1,10 @@
 import { cleanMarinaData, cleanPOIData } from './utilities'
 
 function fetchMarinas({north, east, south, west}, setter) {
-  fetch(`https://api.marinas.com/v1/points/search?bounds[ne][lat]=${north}&bounds[ne][lon]=${east}&bounds[sw][lat]=${south}&bounds[sw][lon]=${west}`)
-  .then(res => res.json())
-  .then(data => {
-    const cleanedData = cleanMarinaData(data)
-    setter(cleanedData)
-  })
+  const url = `https://api.marinas.com/v1/points/search?bounds[ne][lat]=${north}
+  &bounds[ne][lon]=${east}&bounds[sw][lat]=${south}&bounds[sw][lon]=${west}`
 
-  //Seeded data call below
-    // const cleanedData = cleanMarinaData(data)
-    // console.log(cleanedData)
-    // setMarinas(cleanedData)
+  fetchData(cleanMarinaData, setter, url)
 }
 
 function searchPOI({locomotion, travelTime, interest}, trip, setter) {
@@ -22,16 +15,26 @@ function searchPOI({locomotion, travelTime, interest}, trip, setter) {
     'entertainment': 10000
   }
   const currLocationStr = `${trip.marina.location.lat},${trip.marina.location.lon}`
-  fetch(`https://api.foursquare.com/v3/places/search?ll=${currLocationStr}&radius=${travelTime * 80}&categories=${POIMap[interest]}&limit=50&session_token=${process.env.REACT_APP_FSQ_SESSION}`, {
+
+  const url = `https://api.foursquare.com/v3/places/search?ll=${currLocationStr}&radius=${travelTime * 80}&categories=${POIMap[interest]}&limit=50&session_token=${process.env.REACT_APP_FSQ_SESSION}`
+  const headers = {
     headers: {
       Authorization: process.env.REACT_APP_FSQ_KEY
     }
-  })
-  .then(res => res.json())
-  .then(data => {
-    const cleanedData = cleanPOIData(data)
-    setter(cleanedData)
-  })
+  }
+  fetchData(cleanPOIData, setter, url, headers)
+  }
+
+  function fetchData(cleaner, setter, url, headers) {
+    if (headers) {
+      fetch(url, headers)
+      .then(res => res.json())
+      .then(data => setter(cleaner(data)))
+    } else {
+      fetch(url)
+      .then(res => res.json())
+      .then(data => setter(cleaner(data)))
+    }
   }
 
   export {fetchMarinas, searchPOI}

@@ -34,9 +34,6 @@ function App() {
         element={<MainPage trips={trips} />} />
         <Route path='/new-trip' 
         element={<NewPage addTrip={addTrip} 
-        editTrip={editTrip} 
-        trips={trips} 
-        setTrips={setTrips} 
         checkTrip={checkTrip} />}/>
         <Route path='/edit/:tripID' 
         element={<EditPage 

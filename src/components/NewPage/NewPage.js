@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../TripPage/TripPage.css'
 import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
-import Form from '../Form/Form';
-import POIListings from '../POIListings/POIListings';
 import DestinationForm from '../DestinationForm/DestinationForm'
 import MarinaListings from '../MarinaListings/MarinaListings';
-import { useParams } from 'react-router'
 
-function NewPage({addTrip, trips, setPOIs, checkTrip}) {
+function NewPage({addTrip, checkTrip}) {
   const [marinas, setMarinas] = useState('')
   const [selectedMarina, setSelectedMarina] = useState('')
-  const [currTrip, setCurrTrip] = useState('')
-
-  const { tripID } = useParams()
 
   function updateSelectedMarina(id) {
     setSelectedMarina(marinas.find(marina => marina.id === id))
@@ -33,7 +27,6 @@ function NewPage({addTrip, trips, setPOIs, checkTrip}) {
         selectedMarina={selectedMarina} 
         setSelectedMarina={setSelectedMarina}
         addTrip={addTrip}
-        setCurrTrip={setCurrTrip}
         checkTrip={checkTrip} />
         <MarinaListings 
           marinas={marinas}

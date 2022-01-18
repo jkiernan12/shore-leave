@@ -4,8 +4,6 @@ import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
 import POIListings from '../POIListings/POIListings';
 import { useParams, useNavigate } from 'react-router'
-import NewPage from '../NewPage/NewPage';
-import EditPage from '../EditPage/EditPage';
 
 function ViewPage({addTrip, editTrip, trips, setTrips, checkTrip}) {
   const [POIs, setPOIs] = useState('')

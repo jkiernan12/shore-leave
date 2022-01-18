@@ -3,7 +3,7 @@ import TripCard from '../TripCard/TripCard';
 import logo from '../../logo.svg'
 import './TripSection.css';
 
-function TripSection({title, tripType, trips}) {
+function TripSection({title, trips}) {
   console.log(trips)
   return ( 
     <section className='TripSection'>

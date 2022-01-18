@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from '../Button/Button.js';
 import './Form.css'
 import { searchPOI } from '../../api-calls.js';
 

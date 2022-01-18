@@ -14,3 +14,28 @@
   scroll-behavior: smooth;
   width: 100%;
 }
+
+.ViewPage--info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .TripPage {
+    flex-direction: column;
+  }
+
+  .TripPage--right {
+    height: 60%;
+    width: 100%;
+  }
+
+  .Map {
+    width: 100%;
+    min-height: 40%;
+    overflow: none;
+  }
+}

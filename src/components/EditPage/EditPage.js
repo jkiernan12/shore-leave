@@ -10,6 +10,8 @@ import PropTypes from 'prop-types'
 
 function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, highlightSelectedPOI, updateSelectedPOI, removePOI}) {
 
+  const [errorMessage, setErrorMessage] = useState('')
+
   const { tripID } = useParams()
 
   useEffect(() => {
@@ -31,7 +33,10 @@ function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
       <section className='TripPage--right'>
         <Form setter={setPOIs}
           currTrip={currTrip}
+          setErrorMessage={setErrorMessage}
         />
+        {errorMessage && <p>{errorMessage}</p>}
+        {POIs && POIs.length === 0 && <p>Hmm, no matches. Try expanding your search.</p>}
         <POIListings 
           POIs={POIs}
           selectedPOI={selectedPOI}

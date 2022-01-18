@@ -7,3 +7,10 @@
 .Marker--selected {
   transform: scale(200%);
 }
+
+@media (max-width: 600px) {
+  .Map--container {
+    height: 30vh;
+    width: 100%;
+  }
+}

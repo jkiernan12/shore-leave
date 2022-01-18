@@ -1,10 +1,13 @@
 .App {
   background-color: #edeffa;
+  min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  background-color: #262660;
+  color:#d2ab2d;
+  max-width: 200px;
+  margin: 1%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

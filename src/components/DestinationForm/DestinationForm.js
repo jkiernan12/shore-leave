@@ -31,7 +31,7 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, checkTrip}
       <p>{selectedMarina && selectedMarina.name}</p>
     </div>
       <input type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
-      <button onClick={createTrip} className='DestinationForm--button'>Submit</button>
+      <button onClick={createTrip} className='DestinationForm--button'>Save</button>
     </form>
    );
 }

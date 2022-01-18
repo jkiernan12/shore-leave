@@ -3,7 +3,8 @@ import '../TripPage/TripPage.css'
 import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
 import DestinationForm from '../DestinationForm/DestinationForm'
-import MarinaListings from '../MarinaListings/MarinaListings';
+import MarinaListings from '../MarinaListings/MarinaListings'
+import PropTypes from 'prop-types'
 
 function NewPage({addTrip, checkTrip}) {
   const [marinas, setMarinas] = useState('')
@@ -37,6 +38,11 @@ function NewPage({addTrip, checkTrip}) {
     </main>
     </>
    );
+}
+
+NewPage.propTypes = {
+  addTrip: PropTypes.func.isRequired,
+  checkTrip: PropTypes.func.isRequired
 }
 
 export default NewPage

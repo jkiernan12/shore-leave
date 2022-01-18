@@ -1,6 +1,6 @@
 import './App.css';
-import { Routes, Route, useParams, useLocation } from 'react-router';
-import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router';
+import React, { useState } from 'react';
 import MainPage from '../MainPage/MainPage.js';
 import ViewPage from '../ViewPage/ViewPage';
 import EditPage from '../EditPage/EditPage';

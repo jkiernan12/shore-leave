@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import './DestinationForm.css'
+import PropTypes from 'prop-types'
 
 function DestinationForm({selectedMarina, setSelectedMarina, addTrip, checkTrip}) {
   const [date, setDate] = useState('')
@@ -33,6 +34,13 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, checkTrip}
       <button onClick={createTrip} className='DestinationForm--button'>Submit</button>
     </form>
    );
+}
+
+DestinationForm.propTypes = {
+  selectedMarina: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  setSelectedMarina: PropTypes.func.isRequired,
+  addTrip: PropTypes.func.isRequired,
+  checkTrip: PropTypes.func.isRequired
 }
 
 export default DestinationForm;

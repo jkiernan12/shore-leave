@@ -4,6 +4,7 @@ import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
 import POIListings from '../POIListings/POIListings';
 import { useParams, useNavigate } from 'react-router'
+import PropTypes from 'prop-types'
 
 function ViewPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, highlightSelectedPOI, updateSelectedPOI, removePOI}) {
   const { tripID } = useParams()
@@ -41,6 +42,18 @@ function ViewPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
       </main>
       </>
    );
+}
+
+ViewPage.propTypes = {
+  trips: PropTypes.array.isRequired,
+  POIs: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
+  setPOIs: PropTypes.func.isRequired,
+  selectedPOI: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  currTrip: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  setCurrTrip: PropTypes.func.isRequired,
+  highlightSelectedPOI: PropTypes.func.isRequired,
+  updateSelectedPOI: PropTypes.func.isRequired,
+  removePOI: PropTypes.func.isRequired
 }
 
 export default ViewPage

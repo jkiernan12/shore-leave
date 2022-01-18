@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import POICard from '../POICard/POICard';
+import PropTypes from 'prop-types'
 
 function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip}) {
   return ( 
@@ -21,6 +22,15 @@ function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, cur
           )})}
         </section>
    );
+}
+
+POIListings.propTypes = {
+  type: PropTypes.string,
+  POIs: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
+  selectedPOI: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  updateSelectedPOI: PropTypes.func.isRequired,
+  removePOI: PropTypes.func.isRequired,
+  currTrip: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
 }
 
 export default POIListings;

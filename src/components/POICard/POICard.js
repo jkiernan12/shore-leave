@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './POICard.css'
 import logo from '../../logo.svg'
-import Button from '../Button/Button';
+import PropTypes from 'prop-types'
 
 function POICard({type, name, image, selected, id, rating, fuel, updateSelectedMarina, updateSelectedPOI, categories, distance, address, removePOI, currTrip}) {
   const selectedCard = useRef(null)
@@ -63,6 +63,23 @@ function POICard({type, name, image, selected, id, rating, fuel, updateSelectedM
       </article>
      )
   }
+}
+
+POICard.propTypes = {
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  selected: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  rating: PropTypes.string,
+  fuel: PropTypes.array,
+  updateSelectedMarina: PropTypes.func,
+  updateSelectedPOI: PropTypes.func,
+  categories: PropTypes.array,
+  distance: PropTypes.number,
+  address: PropTypes.string,
+  removePOI: PropTypes.func,
+  currTrip: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 }
 
 export default POICard;

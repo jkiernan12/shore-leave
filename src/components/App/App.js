@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, useParams } from 'react-router';
+import { Routes, Route, useParams, useLocation } from 'react-router';
 import React, { useState, useEffect } from 'react';
 import MainPage from '../MainPage/MainPage.js';
 import ViewPage from '../ViewPage/ViewPage';
@@ -8,6 +8,40 @@ import NewPage from '../NewPage/NewPage';
 
 function App() {
   const [trips, setTrips] = useState([])
+  const [POIs, setPOIs] = useState('')
+  const [selectedPOI, setSelectedPOI] = useState('')
+  const [currTrip, setCurrTrip] = useState('')
+
+  function highlightSelectedPOI(id) {
+    setSelectedPOI(POIs.find(poi => poi.id === id))
+  }
+
+  function updateSelectedPOI(id) {
+    const currPOI = POIs.find(poi => poi.id === id)
+    let updatedDestinations = currTrip.destinations
+    const isDupe = currTrip.destinations.some(destination => destination.id === id)
+    if (!isDupe) {
+      updatedDestinations = {
+        destinations: [...currTrip.destinations, currPOI]
+      }
+      const newTrip = {...currTrip, ...updatedDestinations}
+      setCurrTrip(newTrip) 
+      if (!trips[0] || checkTrip(newTrip.id)) {
+        addTrip(newTrip)
+      } else if (!checkTrip(newTrip.id)) {
+        editTrip(newTrip, currPOI)
+      } 
+    } 
+  }
+
+  function removePOI(id) {
+    const newTrips = [...trips]
+    const oldTrip = newTrips.find(trip => trip.id === currTrip.id)
+    const oldDestinationIndex = oldTrip.destinations.findIndex(destination => destination.id === id)
+    oldTrip.destinations.splice(oldDestinationIndex, 1)
+    setTrips(() => ([...newTrips]))
+    setCurrTrip(oldTrip)
+  }
 
   function addTrip(newTrip) {
     setTrips(trips => [...trips, newTrip])
@@ -32,23 +66,37 @@ function App() {
       <Routes>
         <Route path='/' 
         element={<MainPage trips={trips} />} />
+
         <Route path='/new-trip' 
         element={<NewPage addTrip={addTrip} 
         checkTrip={checkTrip} />}/>
+
         <Route path='/edit/:tripID' 
         element={<EditPage 
-        addTrip={addTrip} 
-        editTrip={editTrip} 
         trips={trips} 
-        setTrips={setTrips} 
-        checkTrip={checkTrip}/>} />
+        POIs={POIs} 
+        setPOIs={setPOIs}
+        selectedPOI={selectedPOI}
+        currTrip={currTrip}
+        setCurrTrip={setCurrTrip} 
+        highlightSelectedPOI={highlightSelectedPOI}
+        updateSelectedPOI={updateSelectedPOI}
+        removePOI={removePOI}
+        />} />
+
         <Route path='/view/:tripID' 
         element={<ViewPage 
-        addTrip={addTrip} 
-        editTrip={editTrip} 
         trips={trips} 
-        setTrips={setTrips} 
-        checkTrip={checkTrip}/>} />
+        POIs={POIs} 
+        setPOIs={setPOIs}
+        selectedPOI={selectedPOI}
+        currTrip={currTrip}
+        setCurrTrip={setCurrTrip} 
+        highlightSelectedPOI={highlightSelectedPOI}
+        updateSelectedPOI={updateSelectedPOI}
+        removePOI={removePOI}
+        />} />
+
       </Routes>
     </div>
   );

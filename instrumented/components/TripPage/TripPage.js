@@ -56,10 +56,9 @@ function TripPage({addTrip, editTrip, trips, setTrips, stage, setStage}) {
   function removePOI(id) {
     const newTrips = [...trips]
     const oldTrip = newTrips.find(trip => trip.id === currTrip.id)
-    const oldDestinationIndex = oldTrip.destinations.findIndex(destination => destination.id === id)
+    const oldDestinationIndex = oldTrip.destinations.indexOf(destination => destination.id === id)
     oldTrip.destinations.splice(oldDestinationIndex, 1)
     setTrips(() => ([...newTrips]))
-    setCurrTrip(oldTrip)
   }
 
   return ( 

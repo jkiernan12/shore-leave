@@ -30,11 +30,6 @@ function POICard({type, name, image, selected, id, rating, fuel, updateSelectedM
     setSaved(false)
   }
 
-  function handleSelect(id) {
-    updateSelectedPOI(id)
-    setSaved(true)
-  }
-
   if (type === 'marina') {
   return ( 
     <article ref={selectedCard} className={`POICard highlighted__${selected}`}>
@@ -58,7 +53,7 @@ function POICard({type, name, image, selected, id, rating, fuel, updateSelectedM
           <p>Address: {address}</p>
           {rating && <p>Rating: {rating}</p>}
         </div>
-        {!saved && <button onClick={() => handleSelect(id) } className='button__primary POI--button'>Select</button>}
+        {!saved && <button onClick={() => updateSelectedPOI(id) } className='button__primary POI--button'>Select</button>}
         {saved && <button onClick={() => handleDelete(id)}>Delete</button>}
       </article>
      )

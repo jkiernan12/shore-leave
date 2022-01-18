@@ -8,20 +8,12 @@ import DestinationForm from '../DestinationForm/DestinationForm'
 import MarinaListings from '../MarinaListings/MarinaListings';
 import { useParams } from 'react-router'
 
-function NewPage({addTrip, trips, setPOIs, stage, setStage, checkTrip}) {
+function NewPage({addTrip, trips, setPOIs, checkTrip}) {
   const [marinas, setMarinas] = useState('')
   const [selectedMarina, setSelectedMarina] = useState('')
   const [currTrip, setCurrTrip] = useState('')
 
   const { tripID } = useParams()
-
-  useEffect(() => {
-    if (tripID && stage === 'existing') {
-      const matchedTrip = trips.find(trip => trip.id === tripID)
-      setCurrTrip(matchedTrip)
-      setPOIs(matchedTrip.destinations)
-  }
-  }, [tripID])
 
   function updateSelectedMarina(id) {
     setSelectedMarina(marinas.find(marina => marina.id === id))
@@ -35,7 +27,6 @@ function NewPage({addTrip, trips, setPOIs, stage, setStage, checkTrip}) {
         marinas={marinas} 
         selectedMarina={selectedMarina}
         updateSelectedMarina={updateSelectedMarina}
-        stage={stage}
         setMarinas={setMarinas} />
       <section className='TripPage--right'>
         <DestinationForm 
@@ -43,7 +34,6 @@ function NewPage({addTrip, trips, setPOIs, stage, setStage, checkTrip}) {
         setSelectedMarina={setSelectedMarina}
         addTrip={addTrip}
         setCurrTrip={setCurrTrip}
-        setStage={setStage}
         checkTrip={checkTrip} />
         <MarinaListings 
           marinas={marinas}

@@ -5,9 +5,12 @@ import MapEvents from './MapEvents'
 import Button from '../Button/Button'
 import logo from '../../logo.svg'
 import L from 'leaflet';
+import { useLocation } from 'react-router'
 
 
-function Map({ marinas, setMarinas, updateSelectedMarina, selectedMarina, POIs, selectedPOI, highlightSelectedPOI, stage }) {
+function Map({ marinas, setMarinas, updateSelectedMarina, POIs, highlightSelectedPOI }) {
+  let currentPage = useLocation()
+
   const myCoord = {
     center: [41, -71],
     zoom: 8
@@ -36,7 +39,7 @@ function Map({ marinas, setMarinas, updateSelectedMarina, selectedMarina, POIs, 
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {marinas && stage === 'marina' && marinas.map(({location, id}) => {
+      {marinas && currentPage.pathname.includes('new') && marinas.map(({location, id}) => {
         return (
           <Marker 
           key={id} 
@@ -50,7 +53,7 @@ function Map({ marinas, setMarinas, updateSelectedMarina, selectedMarina, POIs, 
         )
       })
       }
-      {(stage === 'locations' || stage === 'existing') && POIs && POIs.map(({location, id}) => {
+      {(currentPage.pathname.includes('view') || currentPage.pathname.includes('edit')) && POIs && POIs.map(({location, id}) => {
         return (
           <Marker 
           key={id} 
@@ -65,7 +68,7 @@ function Map({ marinas, setMarinas, updateSelectedMarina, selectedMarina, POIs, 
         )
       })
       }
-      {stage === 'marina' && <MapEvents setter={setMarinas} />}
+      {currentPage.pathname.includes('new') && <MapEvents setter={setMarinas} />}
     </MapContainer>
   )
 }

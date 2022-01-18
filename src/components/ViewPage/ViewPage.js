@@ -3,16 +3,17 @@ import '../TripPage/TripPage.css'
 import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
 import POIListings from '../POIListings/POIListings';
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import NewPage from '../NewPage/NewPage';
 import EditPage from '../EditPage/EditPage';
 
-function ViewPage({addTrip, editTrip, trips, setTrips, stage, setStage, checkTrip}) {
+function ViewPage({addTrip, editTrip, trips, setTrips, checkTrip}) {
   const [POIs, setPOIs] = useState('')
   const [selectedPOI, setSelectedPOI] = useState('')
   const [currTrip, setCurrTrip] = useState('')
 
   const { tripID } = useParams()
+  let navigate = useNavigate()
 
   useEffect(() => {
     if (tripID) {
@@ -59,12 +60,11 @@ function ViewPage({addTrip, editTrip, trips, setTrips, stage, setStage, checkTri
         <Map className='Map' 
           POIs={POIs}
           selectedPOI={selectedPOI}
-          highlightSelectedPOI={highlightSelectedPOI}
-          stage={stage} />
+          highlightSelectedPOI={highlightSelectedPOI} />
      {currTrip && <section className='TripPage--right'>
       <h1>{currTrip.marina.name}</h1>
       <p>{currTrip.date}</p>
-      <button onClick={() => setStage('locations')}>Edit</button>
+      <button onClick={() => navigate(`/edit/${currTrip.id}`)}>Edit</button>
         <POIListings 
           POIs={currTrip.destinations}
           selectedPOI={selectedPOI}

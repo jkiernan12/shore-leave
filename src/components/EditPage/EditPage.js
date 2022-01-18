@@ -7,7 +7,7 @@ import POIListings from '../POIListings/POIListings';
 import { useParams } from 'react-router'
 
 
-function EditPage({addTrip, editTrip, trips, setTrips, stage, checkTrip}) {
+function EditPage({addTrip, editTrip, trips, setTrips, checkTrip}) {
   const [POIs, setPOIs] = useState('')
   const [selectedPOI, setSelectedPOI] = useState('')
   const [currTrip, setCurrTrip] = useState('')
@@ -60,8 +60,7 @@ function EditPage({addTrip, editTrip, trips, setTrips, stage, checkTrip}) {
       <Map className='Map' 
         POIs={POIs}
         selectedPOI={selectedPOI}
-        highlightSelectedPOI={highlightSelectedPOI}
-        stage={stage} />
+        highlightSelectedPOI={highlightSelectedPOI} />
       <section className='TripPage--right'>
         <Form setter={setPOIs}
           currTrip={currTrip}

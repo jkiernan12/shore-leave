@@ -5,6 +5,7 @@ import MainPage from '../MainPage/MainPage.js';
 import ViewPage from '../ViewPage/ViewPage';
 import EditPage from '../EditPage/EditPage';
 import NewPage from '../NewPage/NewPage';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 function App() {
   const [trips, setTrips] = useState([])
@@ -96,6 +97,8 @@ function App() {
         updateSelectedPOI={updateSelectedPOI}
         removePOI={removePOI}
         />} />
+
+        <Route path='*' element={<ErrorPage />} />
 
       </Routes>
     </div>

@@ -6,6 +6,7 @@
   cursor: pointer;
   text-decoration: none;
   color: #262660;
+  width: 20%;
 }
 
 .TripCard--text {
@@ -13,7 +14,7 @@
 }
 
 .TripCard--image {
-  width: 200px;
+  width: 100%;
 }
 
 @media (max-width: 400px) {

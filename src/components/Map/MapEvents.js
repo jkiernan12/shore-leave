@@ -27,6 +27,7 @@ function MapEvents({setter, setErrorMessage}) {
   const map = useMapEvents({
     moveend: () => {
       fetchMarinas(cleanMapBounds(map), setter)
+      .then(data => setter(data))
       .catch(err => {
         setErrorMessage('There was an issue connecting with the database. Please try again later')
       }

@@ -7,7 +7,7 @@ function MainPage({trips}) {
   const upcomingTrips = trips?.filter(trip => new Date(trip.date) >= new Date(Date.now()))
 
   return ( 
-    <div>
+    <div className='MainPage'>
       <Nav />
       <TripSection title='Upcoming Trips' trips={upcomingTrips}  />
       <TripSection title='Past Trips' trips={pastTrips}  />

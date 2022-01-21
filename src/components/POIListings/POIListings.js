@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import POICard from '../POICard/POICard';
 import PropTypes from 'prop-types'
+import { cleanMarinaData } from '../../utilities';
 
 function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip}) {
+
+  // get travel times here with fetch. map POIs and send to fetchTravelTime
+
+
   return ( 
     <section className='POI-section'>
         { POIs.length > 0 && POIs.map(poi => {
@@ -11,6 +16,7 @@ function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, cur
               name={poi.name} 
               id={poi.id}
               key={poi.id}
+              location={poi.location}
               categories={poi.categories}
               distance={poi.distance}
               address={poi.address}

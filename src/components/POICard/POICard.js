@@ -2,15 +2,29 @@ import React, {useEffect, useRef, useState} from 'react';
 import './POICard.css'
 import logo from '../../logo.svg'
 import PropTypes from 'prop-types'
+import { fetchImages, fetchTravelTime, travelTime } from '../../api-calls';
 
-function POICard({type, name, image, selected, id, rating, fuel, updateSelectedMarina, updateSelectedPOI, categories, distance, address, removePOI, currTrip}) {
+function POICard({type, name, selected, id, rating, fuel, updateSelectedMarina, updateSelectedPOI, categories, distance, address, removePOI, currTrip, location}) {
   const selectedCard = useRef(null)
 
   const [saved, setSaved] = useState(false)
+  const [image, setImage] = useState('')
+  const [travelTime, setTravelTime] = useState(0);
 
   const scrollToElement = () => {
     selectedCard.current.scrollIntoView()
   }
+
+  useEffect(() => {
+    if (type === 'poi') {
+      fetchImages(id)
+      .then(url => setImage(url))
+      .catch(err => console.log(err))
+      fetchTravelTime([currTrip.marina.location.lon + ',' + currTrip.marina.location.lat, location.lon + ',' + location.lat])
+      .then(data => setTravelTime(data))
+      .catch(err => console.log(err))
+    }
+  }, [])
 
   useEffect(() => {
     if (selected) {
@@ -53,9 +67,10 @@ function POICard({type, name, image, selected, id, rating, fuel, updateSelectedM
         <img className='POICard--image' src={image ? image : logo}/>
         <div className='POICard--text'>
           <h3>{name}</h3>
-          {categories.length > 0 && <p>Categories: {categories.join(', ')}</p>}
-          <p>Distance: {distance} meters</p>
-          <p>Address: {address}</p>
+          {categories.length > 0 && <p><span className='bold'>Categories</span>: {categories.join(', ')}</p>}
+          <p><span className='bold'>Distance</span>: {distance} meters</p>
+          <p><span className='bold'>Address</span>: {address}</p>
+          {travelTime > 0 && <p><span className='bold'>Travel Time</span>: {travelTime} mins</p>}
           {rating && <p>Rating: {rating}</p>}
         </div>
         {!saved && <button onClick={() => handleSelect(id) } className='button__primary POI--button'>Select</button>}

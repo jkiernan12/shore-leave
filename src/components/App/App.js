@@ -12,10 +12,11 @@ function App() {
   const [POIs, setPOIs] = useState('')
   const [selectedPOI, setSelectedPOI] = useState('')
   const [currTrip, setCurrTrip] = useState('')
+  const [query, setQuery] = useState({locomotion: 'walk', travelRadius: '5', interest: 'restaurants'});
   
   useEffect(() => {
     const retrievedTrips = JSON.parse(localStorage.getItem('savedTrips'))
-    if (retrievedTrips?.length) {
+    if (retrievedTrips.length) {
       setTrips(retrievedTrips)
     } 
   }, []);
@@ -94,6 +95,8 @@ function App() {
         highlightSelectedPOI={highlightSelectedPOI}
         updateSelectedPOI={updateSelectedPOI}
         removePOI={removePOI}
+        query={query}
+        setQuery={setQuery}
         />} />
 
         <Route path='/view/:tripID' 

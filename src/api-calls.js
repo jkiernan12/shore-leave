@@ -7,7 +7,8 @@ function fetchMarinas({north, east, south, west}, setter) {
   return fetchData(cleanMarinaData,  url)
 }
 
-function searchPOI({locomotion, travelTime, interest}, trip, setter) {
+function searchPOI({locomotion, travelRadius, interest}, trip, setter) {
+  console.log(locomotion, travelRadius, interest)
   const POIMap = {
     'restaurants': 13000,
     'grocery-stores': 17069,
@@ -22,14 +23,46 @@ function searchPOI({locomotion, travelTime, interest}, trip, setter) {
   }
   const currLocationStr = `${trip.marina.location.lat},${trip.marina.location.lon}`
 
-  const url = `https://api.foursquare.com/v3/places/search?ll=${currLocationStr}&radius=${travelTime * locomotionMap[locomotion]}&categories=${POIMap[interest]}&limit=10&session_token=${process.env.REACT_APP_FSQ_SESSION}`
+  const url = `https://api.foursquare.com/v3/places/search?ll=${currLocationStr}&radius=${travelRadius * locomotionMap[locomotion]}&categories=${POIMap[interest]}&limit=10&session_token=${process.env.REACT_APP_FSQ_SESSION}`
   const headers = {
     headers: {
       Authorization: process.env.REACT_APP_FSQ_KEY
     }
   }
   return fetchData(cleanPOIData, url, headers)
-  }
+  .then(data =>  { 
+    const promises = data.map(poi => {
+    return fetchImages(poi.id)
+    .then(imageUrl => {
+      poi.image = imageUrl
+      return poi
+    }).catch(err => {
+      console.log(err)
+      return poi
+    })
+    })
+    return Promise.all(promises)
+  })
+  .then(data => {
+    const promises = data.map(poi => {
+      return fetchTravelTime([trip.marina.location.lon + ',' + trip.marina.location.lat, poi.location.lon + ',' + poi.location.lat])
+      .then(travelTime => {
+        poi.travelTime = travelTime
+        return poi
+      }).catch(err => {
+        console.log(err)
+        return poi
+      })
+      })
+      return Promise.all(promises)
+  })
+  .catch(err => console.log(err))
+  //   const travelTimes = fetchTravelTime([trip.marina.location.lon + ',' + trip.marina.location.lat, poi.location.lon + ',' + poi.location.lat])
+  //   .then(time => poi.travelTime = time)
+  //   return Promise.all(images, travelTimes)
+  //   }))
+  //   .then(data => data)
+}
 
   function fetchImages(id) {
     const url = `https://api.foursquare.com/v3/places/${id}/photos?limit=1`

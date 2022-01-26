@@ -3,7 +3,7 @@ import POICard from '../POICard/POICard';
 import PropTypes from 'prop-types'
 import { cleanMarinaData } from '../../utilities';
 
-function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip, setCurrTrip, query}) {
+function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip, setCurrTrip}) {
 
   return ( 
     <section className='POI-section'>

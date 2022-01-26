@@ -12,8 +12,6 @@ function App() {
   const [POIs, setPOIs] = useState('')
   const [selectedPOI, setSelectedPOI] = useState('')
   const [currTrip, setCurrTrip] = useState('')
-  const [query, setQuery] = useState({locomotion: 'walk', travelRadius: '5', interest: 'restaurants'});
-  // ^^ this needs to be shifted to trips array
   
   useEffect(() => {
     const retrievedTrips = JSON.parse(localStorage.getItem('savedTrips'))
@@ -50,11 +48,6 @@ function App() {
       }
       const newTrip = {...currTrip, ...updatedDestinations}
       setCurrTrip(newTrip) 
-      // if (!trips[0] || checkTrip(newTrip.id)) {
-      //   addTrip(newTrip)
-      // } else if (!checkTrip(newTrip.id)) {
-      //   editTrip(newTrip, currPOI)
-      // } 
     } 
   }
 
@@ -107,8 +100,6 @@ function App() {
         highlightSelectedPOI={highlightSelectedPOI}
         updateSelectedPOI={updateSelectedPOI}
         removePOI={removePOI}
-        query={query}
-        setQuery={setQuery}
         />} />
 
         <Route path='/view/:tripID' 

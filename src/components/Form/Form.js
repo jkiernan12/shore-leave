@@ -5,16 +5,9 @@ import { searchPOI } from '../../api-calls.js';
 import PropTypes from 'prop-types'
 
 function Form({ setter, currTrip, setCurrTrip, setErrorMessage, query, setQuery }) {
-  const [locomotion, setLocomotion] = useState('walk')
-  const [travelRadius, setTravelRadius] = useState(1)
-  const [interest, setInterest] = useState('restaurants')
 
   function handlePOIClick(e) {
     e.preventDefault()
-    const currLocomotion = query.locomotion
-    const currTravelRadius = query.travelRadius
-    const currInterest = query. interest
-    console.log(query)
     searchPOI(currTrip.query, currTrip, setter)
     .then(data => setter(data))
     .catch(err => setErrorMessage('There was an issue connecting with the database. Please try again later'))

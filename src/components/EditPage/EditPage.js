@@ -8,7 +8,7 @@ import { useParams } from 'react-router'
 import PropTypes from 'prop-types'
 
 
-function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, highlightSelectedPOI, updateSelectedPOI, removePOI, query, setQuery}) {
+function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, highlightSelectedPOI, updateSelectedPOI, removePOI }) {
 
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -35,8 +35,6 @@ function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
           currTrip={currTrip}
           setCurrTrip={setCurrTrip}
           setErrorMessage={setErrorMessage}
-          query={query}
-          setQuery={setQuery}
         />
         {errorMessage && <p>{errorMessage}</p>}
         {POIs && POIs.length === 0 && <p>Hmm, no matches. Try expanding your search.</p>}
@@ -48,7 +46,7 @@ function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
           removePOI={removePOI}
           currTrip={currTrip}
           setCurrTrip={setCurrTrip}
-          query={query} />
+          />
       </section>
       </main>
       </>

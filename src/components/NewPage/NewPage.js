@@ -5,6 +5,7 @@ import Map from '../Map/Map';
 import DestinationForm from '../DestinationForm/DestinationForm'
 import MarinaListings from '../MarinaListings/MarinaListings'
 import PropTypes from 'prop-types'
+import {IMarina} from '../../interfaces'
 
 function NewPage({addTrip, checkTrip}) {
   const [marinas, setMarinas] = useState('')

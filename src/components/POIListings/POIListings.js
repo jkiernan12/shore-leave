@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import POICard from '../POICard/POICard';
 import PropTypes from 'prop-types'
+import { cleanMarinaData } from '../../utilities';
 
-function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip}) {
+function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip, setCurrTrip}) {
+
   return ( 
     <section className='POI-section'>
-        { POIs.length > 0 && POIs.map(poi => {
-          return (
+        { POIs?.length > 0 && POIs.map(poi => {
+          return (poi.travelTime <= currTrip.query.travelRadius) ? (
             <POICard type={type}
               name={poi.name} 
               id={poi.id}
               key={poi.id}
+              location={poi.location}
               categories={poi.categories}
               distance={poi.distance}
               address={poi.address}
-              selected={poi.id === selectedPOI.id}
+              image={poi.image}
+              travelTime={poi.travelTime}
+              selected={poi.id === selectedPOI?.id}
               updateSelectedPOI={updateSelectedPOI}
               removePOI={removePOI} 
               currTrip={currTrip}
+              setCurrTrip={setCurrTrip}
               />
-          )})}
+          ) : null
+          })}
         </section>
    );
 }

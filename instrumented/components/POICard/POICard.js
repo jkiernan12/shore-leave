@@ -48,7 +48,7 @@ function POICard({type, name, image, selected, id, rating, fuel, updateSelectedM
         <img className='POICard--image' src={image ? image : logo}/>
         <div className='POICard--text'>
           <h3>{name}</h3>
-          {categories.length > 0 && <p>Categories: {categories.join(', ')}</p>}
+          {categories && categories.length > 0 && <p>Categories: {categories.join(', ')}</p>}
           <p>Distance: {distance} meters</p>
           <p>Address: {address}</p>
           {rating && <p>Rating: {rating}</p>}

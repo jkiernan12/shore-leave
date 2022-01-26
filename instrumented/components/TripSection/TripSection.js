@@ -9,7 +9,7 @@ function TripSection({title, tripType, trips, setStage}) {
     <section className='TripSection'>
       <h2 className='TripSection--header'>{title}</h2>
       <div className='Trips--container'>
-        {trips.length > 0 ? trips.map(trip => {
+        {trips?.length > 0 ? trips.map(trip => {
           return (
             <TripCard id={trip.id} title={trip.marina.name} date={trip.date} image={logo} setStage={setStage} />
           )

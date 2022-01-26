@@ -8,7 +8,7 @@ import { useParams } from 'react-router'
 import PropTypes from 'prop-types'
 
 
-function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, highlightSelectedPOI, updateSelectedPOI, removePOI}) {
+function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, highlightSelectedPOI, updateSelectedPOI, removePOI }) {
 
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -33,6 +33,7 @@ function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
       <section className='TripPage--right'>
         <Form setter={setPOIs}
           currTrip={currTrip}
+          setCurrTrip={setCurrTrip}
           setErrorMessage={setErrorMessage}
         />
         {errorMessage && <p>{errorMessage}</p>}
@@ -43,7 +44,9 @@ function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
           updateSelectedPOI={updateSelectedPOI}
           type='poi'
           removePOI={removePOI}
-          currTrip={currTrip} />
+          currTrip={currTrip}
+          setCurrTrip={setCurrTrip}
+          />
       </section>
       </main>
       </>

@@ -42,4 +42,22 @@ function cleanPOIData(data) {
   }).sort((a, b) => a.distance - b.distance)
 }
 
-export { cleanMarinaData, cleanPOIData }
+function cleanTravelTime(data) {
+   if (data) {
+     console.log('cleantime ran', data)
+     return Math.round(data.durations[0][1] / 60)
+   } else {
+    throw 'Error in cleanTravelTime'
+   }
+}
+
+function cleanImages(data) {
+  if (data[0]) {
+    console.log('cleanImages', data)
+    return data[0].prefix + '200x200' + data[0].suffix
+  } else {
+    throw 'Error'
+  }
+}
+
+export { cleanMarinaData, cleanPOIData, cleanImages, cleanTravelTime }

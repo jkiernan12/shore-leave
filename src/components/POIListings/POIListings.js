@@ -19,7 +19,7 @@ function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, cur
               address={poi.address}
               image={poi.image}
               travelTime={poi.travelTime}
-              selected={poi.id === selectedPOI.id}
+              selected={poi.id === selectedPOI?.id}
               updateSelectedPOI={updateSelectedPOI}
               removePOI={removePOI} 
               currTrip={currTrip}

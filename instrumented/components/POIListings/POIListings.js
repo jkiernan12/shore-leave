@@ -4,7 +4,7 @@ import POICard from '../POICard/POICard';
 function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip}) {
   return ( 
     <section className='POI-section'>
-        { POIs.length > 0 && POIs.map(poi => {
+        {POIs.length > 0 && POIs.map(poi => {
           return (
             <POICard type={type}
               name={poi.name} 

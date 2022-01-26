@@ -6,12 +6,13 @@ import ViewPage from '../ViewPage/ViewPage';
 import EditPage from '../EditPage/EditPage';
 import NewPage from '../NewPage/NewPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import { ITrip, IDestination } from '../../interfaces' 
 
 function App() {
-  const [trips, setTrips] = useState([])
-  const [POIs, setPOIs] = useState('')
-  const [selectedPOI, setSelectedPOI] = useState('')
-  const [currTrip, setCurrTrip] = useState('')
+  const [trips, setTrips] = useState<ITrip[] | undefined>(undefined)
+  const [POIs, setPOIs] = useState<IDestination[] | undefined>(undefined)
+  const [selectedPOI, setSelectedPOI] = useState<IDestination | undefined>(undefined)
+  const [currTrip, setCurrTrip] = useState<ITrip | undefined>(undefined)
   
   useEffect(() => {
     const retrievedTrips = JSON.parse(localStorage.getItem('savedTrips'))
@@ -25,13 +26,14 @@ function App() {
   }, [trips])
 
   useEffect(() => {
-    const workingTrips = [...trips]
-    const currTripIndex = workingTrips.findIndex(trip => {
-      console.log(trip.id, currTrip.id)
-      return trip.id === currTrip.id
-    })
-    workingTrips.splice(currTripIndex, 1, currTrip)
-    setTrips(workingTrips)
+    if (trips) {
+      const workingTrips = [...trips]
+      const currTripIndex = workingTrips.findIndex(trip => {
+        return trip.id === currTrip.id
+      })
+      workingTrips.splice(currTripIndex, 1, currTrip)
+      setTrips(workingTrips)
+    } 
   }, [currTrip])
 
   function highlightSelectedPOI(id) {
@@ -43,10 +45,10 @@ function App() {
     let updatedDestinations = currTrip.destinations
     const isDupe = currTrip.destinations.some(destination => destination.id === id)
     if (!isDupe) {
-      updatedDestinations = {
+      const newDestinations = {
         destinations: [...currTrip.destinations, currPOI]
       }
-      const newTrip = {...currTrip, ...updatedDestinations}
+      const newTrip = {...currTrip, ...newDestinations}
       setCurrTrip(newTrip) 
     } 
   }
@@ -61,12 +63,12 @@ function App() {
   }
 
   function addTrip(newTrip) {
-    setTrips(trips => [...trips, newTrip])
+    trips ? setTrips(trips => [...trips, newTrip]) : setTrips([newTrip])
     setCurrTrip(() => newTrip)
   }
 
   function checkTrip(id) {
-    return !(trips.some(trip => trip.id === id))
+    return (trips && trips.length > 0) ? !(trips.some(trip => trip.id === id)): true
   }
 
   function editTrip(newTrip, newPOI) {

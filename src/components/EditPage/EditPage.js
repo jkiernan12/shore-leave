@@ -33,6 +33,7 @@ function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
       <section className='TripPage--right'>
         <Form setter={setPOIs}
           currTrip={currTrip}
+          setCurrTrip={setCurrTrip}
           setErrorMessage={setErrorMessage}
           query={query}
           setQuery={setQuery}
@@ -46,6 +47,7 @@ function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
           type='poi'
           removePOI={removePOI}
           currTrip={currTrip}
+          setCurrTrip={setCurrTrip}
           query={query} />
       </section>
       </main>

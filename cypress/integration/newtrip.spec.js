@@ -81,7 +81,7 @@ describe('creating a trip', () => {
       cy.get('input[type=number]').click().clear().type('10')
       .should('have.value', '10')
 
-      cy.get('select[name=poi]').should('have.value', 'restaurants')
+      cy.get('select[name=interest]').should('have.value', 'restaurants')
       .select('Grocery Stores').should('have.value', 'grocery-stores')
 
       cy.contains('Search').click()
@@ -106,7 +106,7 @@ describe('creating a trip', () => {
       cy.get('input[type=number]').click().clear().type('10')
       .should('have.value', '10')
 
-      cy.get('select[name=poi]').should('have.value', 'restaurants')
+      cy.get('select[name=interest]').should('have.value', 'restaurants')
       .select('Grocery Stores').should('have.value', 'grocery-stores')
 
       cy.contains('Search').click()
@@ -134,7 +134,7 @@ describe('adding destinations', () => {
 
       cy.get('input[type=number]').click().clear().type('10')
 
-      cy.get('select[name=poi]')
+      cy.get('select[name=interest]')
       .select('Grocery Stores')
 
     })
@@ -219,7 +219,7 @@ describe('adding destinations', () => {
 
       cy.get('input[type=number]').click().clear().type('30')
 
-      cy.get('select[name=poi]')
+      cy.get('select[name=interest]')
       .select('Grocery Stores')
 
       cy.contains('Search').click()
@@ -235,7 +235,7 @@ describe('adding destinations', () => {
       cy.contains('Dockside Marina').should('exist')
       .click()
 
-      cy.get('.POICard').should('have.length', 40)
+      cy.get('.POICard').should('have.length', 3)
 
     })
   })

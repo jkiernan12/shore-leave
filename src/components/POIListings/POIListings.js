@@ -3,15 +3,12 @@ import POICard from '../POICard/POICard';
 import PropTypes from 'prop-types'
 import { cleanMarinaData } from '../../utilities';
 
-function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip, query}) {
-
-  // get travel times here with fetch. map POIs and send to fetchTravelTime
-
+function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, currTrip, setCurrTrip, query}) {
 
   return ( 
     <section className='POI-section'>
         { POIs?.length > 0 && POIs.map(poi => {
-          return (poi.travelTime <= query.travelRadius) ? (
+          return (poi.travelTime <= currTrip.query.travelRadius) ? (
             <POICard type={type}
               name={poi.name} 
               id={poi.id}
@@ -26,6 +23,7 @@ function POIListings({type, POIs, selectedPOI, updateSelectedPOI, removePOI, cur
               updateSelectedPOI={updateSelectedPOI}
               removePOI={removePOI} 
               currTrip={currTrip}
+              setCurrTrip={setCurrTrip}
               />
           ) : null
           })}

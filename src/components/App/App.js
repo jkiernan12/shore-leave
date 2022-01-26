@@ -13,10 +13,11 @@ function App() {
   const [selectedPOI, setSelectedPOI] = useState('')
   const [currTrip, setCurrTrip] = useState('')
   const [query, setQuery] = useState({locomotion: 'walk', travelRadius: '5', interest: 'restaurants'});
+  // ^^ this needs to be shifted to trips array
   
   useEffect(() => {
     const retrievedTrips = JSON.parse(localStorage.getItem('savedTrips'))
-    if (retrievedTrips.length) {
+    if (retrievedTrips?.length) {
       setTrips(retrievedTrips)
     } 
   }, []);
@@ -24,6 +25,16 @@ function App() {
   useEffect(() => {
     localStorage.setItem('savedTrips', JSON.stringify(trips))
   }, [trips])
+
+  useEffect(() => {
+    const workingTrips = [...trips]
+    const currTripIndex = workingTrips.findIndex(trip => {
+      console.log(trip.id, currTrip.id)
+      return trip.id === currTrip.id
+    })
+    workingTrips.splice(currTripIndex, 1, currTrip)
+    setTrips(workingTrips)
+  }, [currTrip])
 
   function highlightSelectedPOI(id) {
     setSelectedPOI(POIs.find(poi => poi.id === id))
@@ -39,11 +50,11 @@ function App() {
       }
       const newTrip = {...currTrip, ...updatedDestinations}
       setCurrTrip(newTrip) 
-      if (!trips[0] || checkTrip(newTrip.id)) {
-        addTrip(newTrip)
-      } else if (!checkTrip(newTrip.id)) {
-        editTrip(newTrip, currPOI)
-      } 
+      // if (!trips[0] || checkTrip(newTrip.id)) {
+      //   addTrip(newTrip)
+      // } else if (!checkTrip(newTrip.id)) {
+      //   editTrip(newTrip, currPOI)
+      // } 
     } 
   }
 
@@ -58,6 +69,7 @@ function App() {
 
   function addTrip(newTrip) {
     setTrips(trips => [...trips, newTrip])
+    setCurrTrip(() => newTrip)
   }
 
   function checkTrip(id) {

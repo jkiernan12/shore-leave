@@ -21,9 +21,10 @@
     "web-vitals": "^2.1.3"
   },
   "scripts": {
-    "start": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
-    "test": "npx cypress run",
+    "start": "react-scripts -r @cypress/instrument-cra start",
+    "cy:run": "cypress run",
+    "test": "start-server-and-test start http://localhost:3000 cy:run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -48,6 +49,7 @@
     "@cypress/code-coverage": "^3.9.12",
     "@cypress/instrument-cra": "^1.4.0",
     "cypress": "^9.2.1",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "start-server-and-test": "^1.14.0"
   }
 }

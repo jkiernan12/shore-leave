@@ -20,6 +20,9 @@ jobs:
           command: npm run test
 
 workflows:
+   build:
+    jobs:
+      - cypress/run
   heroku_deploy:
     jobs:
       - build

@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "start": "react-scripts -r @cypress/instrument-cra start",
     "cy:run": "cypress run",
-    "test": "start-server-and-test start http-get://localhost:3000 cy:run",
+    "test": "npm run cy:run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -48,6 +48,7 @@
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.12",
     "@cypress/instrument-cra": "^1.4.0",
+    "ajv": "^8.9.0",
     "cypress": "^9.2.1",
     "nyc": "^15.1.0",
     "start-server-and-test": "^1.14.0"

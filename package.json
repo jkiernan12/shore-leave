@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "start": "react-scripts -r @cypress/instrument-cra start",
     "cy:run": "cypress run",
-    "test": "npm run cy:run",
+    "test": "start-server-and-test start http://localhost:3000 cy:run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

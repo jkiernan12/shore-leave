@@ -6,7 +6,8 @@ jobs:
       - heroku/install
       - heroku/deploy-via-git
 orbs:
-  heroku: circleci/heroku@x.y
+  heroku: heroku: circleci/heroku@1.2.6
+  cypress: cypress-io/cypress@1
 version: 2.1
 workflows:
   build:

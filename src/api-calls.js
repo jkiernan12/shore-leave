@@ -76,7 +76,6 @@ function searchPOI({locomotion, travelRadius, interest}, trip, setter) {
   function fetchTravelTime(ll) {
     const joinedLL = ll.join(';')
     const url = `https://api.mapbox.com/directions-matrix/v1/mapbox/walking/${joinedLL}?access_token=${process.env.REACT_APP_MAPBOX}`
-    console.log(url)
     return fetchData(cleanTravelTime, url)
   }
 

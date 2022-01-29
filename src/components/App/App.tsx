@@ -69,7 +69,7 @@ function App() {
         oldTrip.destinations.splice(oldDestinationIndex, 1)
         setCurrTrip(oldTrip)
       } else {
-        console.log('error)
+        console.log('error')
       }
     }
   }

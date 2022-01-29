@@ -1,0 +1,61 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=7207
+END=12106
+title=creating a trip should not initially have any trips
+[CHAPTER]
+TIMEBASE=1/1000
+START=12896
+END=17150
+title=creating a trip should navigate to the trip page
+[CHAPTER]
+TIMEBASE=1/1000
+START=19933
+END=21552
+title=creating a trip should let you choose a marina
+[CHAPTER]
+TIMEBASE=1/1000
+START=22182
+END=23174
+title=creating a trip should highlight a chosen marina
+[CHAPTER]
+TIMEBASE=1/1000
+START=23189
+END=24172
+title=creating a trip should let you choose a date
+[CHAPTER]
+TIMEBASE=1/1000
+START=23778
+END=25160
+title=creating a trip should let you create a new trip
+[CHAPTER]
+TIMEBASE=1/1000
+START=21004
+END=26544
+title=creating a trip should let you search for destinations
+[CHAPTER]
+TIMEBASE=1/1000
+START=29240
+END=32104
+title=creating a trip should let you search for destinations
+[CHAPTER]
+TIMEBASE=1/1000
+START=31513
+END=34971
+title=adding destinations should hide select button and show delete button after clicking
+[CHAPTER]
+TIMEBASE=1/1000
+START=35467
+END=38437
+title=adding destinations should save selected destinations
+[CHAPTER]
+TIMEBASE=1/1000
+START=37562
+END=41410
+title=adding destinations should delete destinations from an existing trip
+[CHAPTER]
+TIMEBASE=1/1000
+START=37110
+END=45265
+title=adding destinations should let you create multiple trips

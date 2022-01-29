@@ -9,8 +9,4 @@ workflows:
       - cypress/run:
           start: npm start
           wait-on: 'http://localhost:3000'
-      - heroku/default:
-          steps:
-            - checkout
-            - heroku/install
-            - heroku/deploy-via-git
+      - heroku/deploy-via-git

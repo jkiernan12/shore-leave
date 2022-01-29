@@ -2,7 +2,7 @@ interface ITrip {
   id: string
   date: string
   marina: IMarina
-  destinations: IDestination[]
+  destinations: IDestination[] 
   query: IQuery
 }
 
@@ -37,4 +37,4 @@ interface ILocation {
   lon: number
 }
 
-export { IDestination, ILocation, IMarina, IQuery, ITrip }
+export type { IDestination, ILocation, IMarina, IQuery, ITrip }

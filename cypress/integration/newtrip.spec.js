@@ -1,30 +1,30 @@
 describe('creating a trip', () => {
   beforeEach(() => {
-    // cy.fixture('./marinas.json').then(marinas => {
-    //   cy.intercept('GET', 'https://api.marinas.com/v1/points/', {
-    //     statusCode: 200,
-    //     body: marinas
-    //   })
-    // })
-
-    // cy.fixture('./pois.json').then(pois => {
-    //   cy.intercept('GET', 'https://api.foursquare.com/v3/places/search', {
-    //     statusCode: 200,
-    //     body: pois
-    //   })
-    // })
     cy.intercept({
       method: 'GET',
-      url: '/v3/places/search/*'
+      url: '/v3/places/search*'
     }, 
     {fixture: 'pois.json'}).as('foursquare')
+
+    cy.intercept({
+      method: 'GET',
+      url: '/v3/places/*/photos*'
+    }, 
+    {
+      statusCode: 404
+    }).as('foursquareImage')
 
     cy.intercept(
       {
         method: 'GET', 
         url: '/v1/points/*', 
       }, {fixture: 'marinas.json'}).as('marinasAPI')
-    
+
+    cy.intercept(
+      {
+        method: 'GET', 
+        url: '/directions-matrix/v1/mapbox/*/*', 
+      }, {fixture: 'travelTime.json'}).as('travelTime')
     cy.visit('http://localhost:3000/')
   })
 
@@ -92,15 +92,15 @@ describe('creating a trip', () => {
       cy.get('select[name=locomotion]').should('have.value', 'walk')
       .select('Bike').should('have.value', 'bike')
 
-      cy.get('input[type=number]').click().clear().type('10')
-      .should('have.value', '10')
+      cy.get('input[type=number]').click().clear().type('30')
+      .should('have.value', '30')
 
       cy.get('select[name=interest]').should('have.value', 'restaurants')
       .select('Grocery Stores').should('have.value', 'grocery-stores')
 
       cy.contains('Search').click()
       cy.get('.POICard').should('exist')
-      .should('contain', 'Eel Pond')
+      .should('contain', 'Marion General')
 
   })
   it('should let you search for destinations', () => {
@@ -115,15 +115,15 @@ describe('creating a trip', () => {
       cy.get('select[name=locomotion]').should('have.value', 'walk')
       .select('Bike').should('have.value', 'bike')
 
-      cy.get('input[type=number]').click().clear().type('10')
-      .should('have.value', '10')
+      cy.get('input[type=number]').click().clear().type('30')
+      .should('have.value', '30')
 
       cy.get('select[name=interest]').should('have.value', 'restaurants')
       .select('Grocery Stores').should('have.value', 'grocery-stores')
 
       cy.contains('Search').click()
       cy.get('.POICard').should('exist')
-      .should('contain', 'Eel Pond')
+      .should('contain', 'Marion General')
   })
 })
 
@@ -131,15 +131,30 @@ describe('adding destinations', () => {
   beforeEach(() => {
     cy.intercept({
       method: 'GET',
-      url: '/v3/places/search/*'
+      url: '/v3/places/search*'
     }, 
     {fixture: 'pois.json'}).as('foursquare')
 
     cy.intercept(
       {
-        method: 'GET', 
+        method: 'GET',  
         url: '/v1/points/*', 
       }, {fixture: 'marinas.json'}).as('marinasAPI')
+
+      cy.intercept(
+        {
+          method: 'GET', 
+          url: '/directions-matrix/v1/mapbox/*/*', 
+        }, {fixture: 'travelTime.json'}).as('travelTime')
+
+        cy.intercept({
+          method: 'GET',
+          url: '/v3/places/*/photos*'
+        }, 
+        {
+          statusCode: 404
+        }).as('foursquareImage')
+
       cy.visit('http://localhost:3000/')
       cy.contains('New Trip').click()
       cy.get('.Map--container').dblclick()
@@ -152,7 +167,7 @@ describe('adding destinations', () => {
       cy.get('select[name=locomotion]').should('have.value', 'walk')
       .select('Bike')
 
-      cy.get('input[type=number]').click().clear().type('10')
+      cy.get('input[type=number]').click().clear().type('30')
 
       cy.get('select[name=interest]')
       .select('Grocery Stores')
@@ -186,9 +201,8 @@ describe('adding destinations', () => {
 
       cy.contains('Woods Hole').should('exist').should('contain', '02-24').click()
 
-      cy.contains('Eel Pond').should('exist')
-      cy.contains('Woods Hole Market & Provisions').should('exist')
-      cy.get('.POICard').should('have.length', 3)
+      cy.contains('Marion General').should('exist')
+      cy.get('.POICard').should('have.length', 1)
 
   })
 
@@ -208,7 +222,7 @@ describe('adding destinations', () => {
 
       cy.contains('Woods Hole').click()
 
-      cy.contains('Eel Pond').should('not.exist')
+      cy.contains('Marion General').should('not.exist')
   })
 
   it('should let you create multiple trips', () => {
@@ -244,7 +258,7 @@ describe('adding destinations', () => {
       cy.contains('Dockside').should('exist')
       .click()
 
-      cy.get('.POICard').should('have.length', 3)
+      cy.get('.POICard').should('have.length', 1)
 
   })
 

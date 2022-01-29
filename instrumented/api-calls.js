@@ -349,7 +349,6 @@ function fetchMarinas({
 }, setter) {
   cov_1z5rys4x0n().f[0]++;
   cov_1z5rys4x0n().s[0]++;
-  console.log('fetch ran');
   cov_1z5rys4x0n().s[1]++;
   fetch(`https://api.marinas.com/v1/points/search?bounds[ne][lat]=${north}&bounds[ne][lon]=${east}&bounds[sw][lat]=${south}&bounds[sw][lon]=${west}`).then(res => {
     cov_1z5rys4x0n().f[1]++;

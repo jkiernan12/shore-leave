@@ -4,7 +4,7 @@
       {
           "id": "qnc2",
           "resource": "point",
-          "name": "Woods Hole Town Ramp",
+          "name": "Bloop Woods Hole Town Ramp",
           "kind": "ramp",
           "rating": null,
           "review_count": 0,
@@ -1237,7 +1237,7 @@
       {
           "id": "rnc1z6",
           "resource": "point",
-          "name": "Woods Hole Yacht Club",
+          "name": "Bloopy Woods Hole Yacht Club",
           "kind": "marina",
           "rating": "5.0",
           "review_count": 1,

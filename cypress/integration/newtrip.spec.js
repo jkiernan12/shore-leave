@@ -1,6 +1,19 @@
 describe('creating a trip', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/')
+    cy.fixture('./marinas.json').then(marinas => {
+      cy.intercept('GET', 'https://api.marinas.com/v1/points/', {
+        statusCode: 200,
+        body: marinas
+      })
+      cy.fixture('./pois.json').then(pois => {
+        cy.intercept('GET', 'https://api.foursquare.com/v3/places/', {
+          statusCode: 200,
+          body: pois
+        })
+        cy.visit('http://localhost:3000/')
+      })
+    })
+    
   })
 
   it('should not initially have any trips', () => {

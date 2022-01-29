@@ -14,7 +14,6 @@ function Form({ setter, currTrip, setCurrTrip, setErrorMessage, query, setQuery 
   }
 
   function handleInputChange(e) {
-    console.log(e.target.name)
     const newValue = {
       [e.target.name]: e.target.value
     }

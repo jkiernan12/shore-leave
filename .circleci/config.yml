@@ -5,6 +5,11 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git
+  test: 
+    steps:
+      - cypress/run
+        start: npm start
+        wait-on: 'http://localhost:3000'
 orbs:
   heroku: circleci/heroku@1.2.6
   cypress: cypress-io/cypress@1
@@ -12,9 +17,7 @@ version: 2.1
 workflows:
   build:
     jobs:
-      - cypress/run
-        start: npm start
-        wait-on: 'http://localhost:3000'
+      - test
       - deploy
         requires: 
           - cypress/run

@@ -1,23 +1,16 @@
-jobs:
-  deploy:
-    executor: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - heroku/deploy-via-git
-  test: 
-    steps:
-      - cypress/run
-        start: npm start
-        wait-on: 'http://localhost:3000'
-orbs:
-  heroku: circleci/heroku@1.2.6
-  cypress: cypress-io/cypress@1
 version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
+  react: thefrontside/react@0.1.0
+  heroku: circleci/heroku@0.0.10
 workflows:
   build:
     jobs:
-      - test
-      - deploy
-        requires: 
-          - test
+      - cypress/run:
+          start: npm start
+          wait-on: 'http://localhost:3000'
+      - heroku/default:
+          steps:
+            - checkout
+            - heroku/install
+            - heroku/deploy-via-git

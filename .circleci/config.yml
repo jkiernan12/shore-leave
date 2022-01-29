@@ -20,6 +20,6 @@ workflows:
       - cypress/run:
           start: npm start
           wait-on: 'http://localhost:3000'
-  heroku_deploy:
-    jobs:
-      - deploy
+      - heroku_deploy:
+        jobs:
+        - deploy

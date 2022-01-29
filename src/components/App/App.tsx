@@ -9,13 +9,13 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import { ITrip, IDestination } from '../../interfaces' 
 
 function App() {
-  const [trips, setTrips] = useState<ITrip[] | undefined>(undefined)
-  const [POIs, setPOIs] = useState<IDestination[] | undefined>(undefined)
-  const [selectedPOI, setSelectedPOI] = useState<IDestination | undefined>(undefined)
-  const [currTrip, setCurrTrip] = useState<ITrip | undefined>(undefined)
+  const [trips, setTrips] = useState<ITrip[]>([])
+  const [POIs, setPOIs] = useState<IDestination[]>([])
+  const [selectedPOI, setSelectedPOI] = useState<IDestination>()
+  const [currTrip, setCurrTrip] = useState<ITrip>()
   
   useEffect(() => {
-    const retrievedTrips = JSON.parse(localStorage.getItem('savedTrips'))
+    const retrievedTrips = JSON.parse(localStorage.getItem('savedTrips') || '')
     if (retrievedTrips?.length) {
       setTrips(retrievedTrips)
     } 
@@ -26,7 +26,7 @@ function App() {
   }, [trips])
 
   useEffect(() => {
-    if (trips) {
+    if (trips.length && currTrip) {
       const workingTrips = [...trips]
       const currTripIndex = workingTrips.findIndex(trip => {
         return trip.id === currTrip.id
@@ -36,49 +36,61 @@ function App() {
     } 
   }, [currTrip])
 
-  function highlightSelectedPOI(id) {
+  function highlightSelectedPOI(id: string) {
     setSelectedPOI(POIs.find(poi => poi.id === id))
   }
 
-  function updateSelectedPOI(id) {
-    const currPOI = POIs.find(poi => poi.id === id)
+  function updateSelectedPOI(id: string) {
+  if (currTrip) {   
+   const currPOI = POIs.find(poi => poi.id === id)
     let updatedDestinations = currTrip.destinations
     const isDupe = currTrip.destinations.some(destination => destination.id === id)
-    if (!isDupe) {
+    if (!isDupe && currPOI) {
       const newDestinations = {
         destinations: [...currTrip.destinations, currPOI]
       }
       const newTrip = {...currTrip, ...newDestinations}
-      setCurrTrip(newTrip) 
+      if (newTrip.destinations) {
+        setCurrTrip(newTrip) }
+      }
     } 
   }
 
-  function removePOI(id) {
-    const newTrips = [...trips]
-    const oldTrip = newTrips.find(trip => trip.id === currTrip.id)
-    const oldDestinationIndex = oldTrip.destinations.findIndex(destination => destination.id === id)
-    oldTrip.destinations.splice(oldDestinationIndex, 1)
-    setTrips(() => ([...newTrips]))
-    setCurrTrip(oldTrip)
+  function removePOI(id: string) {
+    if (currTrip) {
+      const newTrips = [...trips]
+      const oldTrip = newTrips.find(trip => trip.id === currTrip.id)
+      setTrips(() => ([...newTrips]))
+      if (oldTrip) {
+        const oldDestinationIndex = oldTrip.destinations.findIndex(destination => destination.id === id)
+        oldTrip.destinations.splice(oldDestinationIndex, 1)
+        setCurrTrip(oldTrip)
+      } else {
+        console.log('error finding olTrip')
+      }
+    }
   }
 
-  function addTrip(newTrip) {
+  function addTrip(newTrip: ITrip) {
     trips ? setTrips(trips => [...trips, newTrip]) : setTrips([newTrip])
     setCurrTrip(() => newTrip)
   }
 
-  function checkTrip(id) {
+  function checkTrip(id:string) {
     return (trips && trips.length > 0) ? !(trips.some(trip => trip.id === id)): true
   }
 
-  function editTrip(newTrip, newPOI) {
+  function editTrip(newTrip:ITrip, newPOI:IDestination) {
     const newTrips = [...trips]
     const oldTrip = newTrips.find(trip => trip.id === newTrip.id)
-    const isDupe = (oldTrip.destinations.some(dest => dest.id === newPOI.id))
-    if (!isDupe) {
-      oldTrip.destinations.push(newPOI)
+    if (oldTrip) {
+
+      const isDupe = (oldTrip.destinations.some(dest => dest.id === newPOI.id))
+      if (!isDupe) {
+        oldTrip.destinations.push(newPOI)
+      }
+      setTrips(() => newTrips)
     }
-    setTrips(() => newTrips)
   }
 
   return (
@@ -96,8 +108,8 @@ function App() {
         trips={trips} 
         POIs={POIs} 
         setPOIs={setPOIs}
-        selectedPOI={selectedPOI}
-        currTrip={currTrip}
+        selectedPOI={selectedPOI || ''}
+        currTrip={currTrip || ''}
         setCurrTrip={setCurrTrip} 
         highlightSelectedPOI={highlightSelectedPOI}
         updateSelectedPOI={updateSelectedPOI}
@@ -109,8 +121,8 @@ function App() {
         trips={trips} 
         POIs={POIs} 
         setPOIs={setPOIs}
-        selectedPOI={selectedPOI}
-        currTrip={currTrip}
+        selectedPOI={selectedPOI || ''}
+        currTrip={currTrip || ''}
         setCurrTrip={setCurrTrip} 
         highlightSelectedPOI={highlightSelectedPOI}
         updateSelectedPOI={updateSelectedPOI}

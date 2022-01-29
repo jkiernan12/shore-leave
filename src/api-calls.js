@@ -8,7 +8,6 @@ function fetchMarinas({north, east, south, west}, setter) {
 }
 
 function searchPOI({locomotion, travelRadius, interest}, trip, setter) {
-  console.log(locomotion, travelRadius, interest)
   const POIMap = {
     'restaurants': 13000,
     'grocery-stores': 17069,

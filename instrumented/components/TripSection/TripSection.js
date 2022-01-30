@@ -4,7 +4,6 @@ import logo from '../../logo.svg'
 import './TripSection.css';
 
 function TripSection({title, tripType, trips, setStage}) {
-  console.log(trips)
   return ( 
     <section className='TripSection'>
       <h2 className='TripSection--header'>{title}</h2>

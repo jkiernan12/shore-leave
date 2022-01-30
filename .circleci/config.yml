@@ -9,6 +9,14 @@ workflows:
       - cypress/run:
           start: npm start
           wait-on: 'http://localhost:3000'
+          filters:
+              branches:
+                only:
+                  - main
       - heroku/deploy-via-git:
           requires:
             - cypress/run
+          filters:
+              branches:
+                only:
+                  - main

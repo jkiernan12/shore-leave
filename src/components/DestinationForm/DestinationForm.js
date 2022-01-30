@@ -10,7 +10,6 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, checkTrip}
   function createTrip(e) {
     e.preventDefault()
     if (date && selectedMarina) {
-      console.log('data and marina true')
       const currTrip = {
         id: date.replace(/-/g, '') + '_' + selectedMarina.id,
         date,

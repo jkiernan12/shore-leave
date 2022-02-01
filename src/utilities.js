@@ -50,6 +50,10 @@ function cleanTravelTime(data) {
    }
 }
 
+function cleanIsochrone(data) {
+  return data
+}
+
 function cleanImages(data) {
   if (data[0]) {
     return data[0].prefix + '200x200' + data[0].suffix
@@ -58,4 +62,4 @@ function cleanImages(data) {
   }
 }
 
-export { cleanMarinaData, cleanPOIData, cleanImages, cleanTravelTime }
+export { cleanMarinaData, cleanPOIData, cleanImages, cleanTravelTime, cleanIsochrone }

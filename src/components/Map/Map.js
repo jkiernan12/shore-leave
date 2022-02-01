@@ -22,9 +22,8 @@ function Map({ marinas, setMarinas, updateSelectedMarina, POIs, highlightSelecte
     if (currTrip?.marina) {
       const newCoord = {
         center: [currTrip.marina.location.lat, currTrip.marina.location.lon],
-        zoom: 12
+        zoom: 14
       }
-
       setCurrCoord(newCoord)
     }
   }, [currTrip])
@@ -38,7 +37,6 @@ function Map({ marinas, setMarinas, updateSelectedMarina, POIs, highlightSelecte
   }, [currTrip])
 
   useEffect(() => {
-    console.log(POIs)
     const workingPoints = POIs ? POIs : marinas
     const highlightFunction = POIs ? highlightSelectedPOI : updateSelectedMarina
 
@@ -76,11 +74,9 @@ function Map({ marinas, setMarinas, updateSelectedMarina, POIs, highlightSelecte
     className: 'leaflet-div-icon'
 })
 
-  
-
   return (
     <MapContainer 
-      // key={Date.now()}
+      key={currCoord.center[0]}
       className="Map--container" 
       center={currCoord.center} 
       zoom={currCoord.zoom} 

@@ -11,6 +11,11 @@
   width: 33%
 }
 
+.selected-marina {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
 .DestinationForm--button {
   max-width: 33%;
   background-color: #262660;

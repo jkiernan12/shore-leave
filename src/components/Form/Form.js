@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './Form.css'
 import { Link } from 'react-router-dom';
 import { searchPOI, fetchIsochrone } from '../../api-calls.js';
 import PropTypes from 'prop-types'
 
 function Form({ setter, currTrip, setCurrTrip, setErrorMessage }) {
+  useEffect(() => {
+    handlePOIClick()
+  }, []);
 
   function handlePOIClick(e) {
-    e.preventDefault()
-    
+    if (e) {
+      e.preventDefault()
+    }
     searchPOI(currTrip.query, currTrip, setter)
     .then(data => setter(data.filter(poi => poi.travelTime <= currTrip.query.travelRadius)))
     .catch(err => setErrorMessage('There was an issue connecting with the database. Please try again later'))

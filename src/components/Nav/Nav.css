@@ -9,7 +9,7 @@
 
 .Nav {
   display: flex;
-  justify-content: stretch;
+  justify-content: flex-end;
   align-items: center;
   margin: 0 1%;
   max-width: 600px;

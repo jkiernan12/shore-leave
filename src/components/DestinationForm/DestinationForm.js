@@ -16,7 +16,7 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, checkTrip}
         marina: selectedMarina,
         destinations: [],
         query: {
-          locomotion: 'walk', travelRadius: '5', interest: 'restaurants'
+          locomotion: 'walk', travelRadius: '5', interest: 'restaurants', isochrone: {}
         }
       }
       if (checkTrip(currTrip.id)) {
@@ -31,9 +31,9 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, checkTrip}
     <form className='DestinationForm'>
     <div className='marina-name'>
       <p >Selected Marina:</p>
-      <p>{selectedMarina && selectedMarina.name}</p>
+      <p className='selected-marina'>{selectedMarina.name ? selectedMarina.name : 'Choose a marina below'}</p>
     </div>
-      <input type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+      <input type="date" min={new Date().toISOString().split("T")[0]} value={date} onChange={(e) => setDate(e.target.value)}/>
       <button onClick={createTrip} className='DestinationForm--button'>Save</button>
     </form>
    );

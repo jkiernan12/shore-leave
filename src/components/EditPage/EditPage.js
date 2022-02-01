@@ -29,7 +29,8 @@ function EditPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
       <Map className='Map' 
         POIs={POIs}
         selectedPOI={selectedPOI}
-        highlightSelectedPOI={highlightSelectedPOI} />
+        highlightSelectedPOI={highlightSelectedPOI}
+        currTrip={currTrip} />
       <section className='TripPage--right'>
         <Form setter={setPOIs}
           currTrip={currTrip}

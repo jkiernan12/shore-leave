@@ -1,4 +1,4 @@
-import { cleanMarinaData, cleanPOIData, cleanImages, cleanTravelTime } from './utilities'
+import { cleanMarinaData, cleanPOIData, cleanImages, cleanTravelTime, cleanIsochrone } from './utilities'
 
 function fetchMarinas({north, east, south, west}, setter) {
   const url = `https://api.marinas.com/v1/points/search?bounds[ne][lat]=${north}
@@ -56,12 +56,13 @@ function searchPOI({locomotion, travelRadius, interest}, trip, setter) {
       return Promise.all(promises)
   })
   .catch(err => console.log(err))
-  //   const travelTimes = fetchTravelTime([trip.marina.location.lon + ',' + trip.marina.location.lat, poi.location.lon + ',' + poi.location.lat])
-  //   .then(time => poi.travelTime = time)
-  //   return Promise.all(images, travelTimes)
-  //   }))
-  //   .then(data => data)
 }
+
+  function fetchIsochrone(lon, lat, mins) {
+    const url = `https://api.mapbox.com/isochrone/v1/mapbox/walking/${lon}%2C${lat}?contours_minutes=${mins}&polygons=true&denoise=1&access_token=${process.env.REACT_APP_MAPBOX}`
+
+    return fetchData(cleanIsochrone, url)
+  }
 
   function fetchImages(id) {
     const url = `https://api.foursquare.com/v3/places/${id}/photos?limit=1`
@@ -91,4 +92,4 @@ function searchPOI({locomotion, travelRadius, interest}, trip, setter) {
       .then(data => cleaner(data))
   }
 
-  export {fetchMarinas, searchPOI, fetchImages, fetchTravelTime}
+  export {fetchMarinas, searchPOI, fetchImages, fetchTravelTime, fetchIsochrone}

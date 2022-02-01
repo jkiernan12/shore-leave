@@ -20,6 +20,7 @@ interface IQuery {
   locomotion: string
   travelRadius: string
   interest: string
+  isochrone: object
 }
 
 interface IDestination {

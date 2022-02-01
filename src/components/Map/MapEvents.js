@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useMapEvents } from 'react-leaflet'
+import { useMapEvents, useMap } from 'react-leaflet'
 import { fetchMarinas } from '../../api-calls'
 
 function cleanMapBounds(map) {

@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom'
 
 function Nav() {
   const currentPage = useLocation()
-  console.log(currentPage)
 
   return ( 
     <header className='Header'>

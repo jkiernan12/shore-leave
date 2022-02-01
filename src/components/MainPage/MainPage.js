@@ -10,7 +10,7 @@ function MainPage({trips}) {
     <div className='MainPage'>
       <Nav />
       <TripSection title='Upcoming Trips' trips={upcomingTrips}  />
-      {pastTrips.length && <TripSection title='Past Trips' trips={pastTrips}  />}
+      {pastTrips.length > 0 && <TripSection title='Past Trips' trips={pastTrips}  />}
     </div>
    );
 }

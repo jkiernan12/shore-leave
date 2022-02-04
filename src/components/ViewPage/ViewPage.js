@@ -14,9 +14,11 @@ function ViewPage({trips, POIs, setPOIs, selectedPOI, currTrip, setCurrTrip, hig
     if (tripID) {
       const matchedTrip = trips.find(trip => trip.id === tripID)
       setCurrTrip(matchedTrip)
-      setPOIs(matchedTrip.destinations)
+      if (matchedTrip && matchedTrip.destinations) {
+        setPOIs(matchedTrip.destinations)
+      }
   }
-  }, [tripID])
+  }, [tripID, trips])
 
   return ( 
     <>

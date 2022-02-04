@@ -15,17 +15,19 @@ function App() {
   const [currTrip, setCurrTrip] = useState<ITrip>()
   
   useEffect(() => {
-    const retrievedData = (localStorage.getItem('savedTrips') || '')
+    const retrievedData = (localStorage.getItem('savedTrips'))
     if (retrievedData) {
-      const retrievedTrips = JSON.parse(localStorage.getItem('savedTrips') || '')
-      if (retrievedTrips?.length) {
-        setTrips(retrievedTrips)
+      const retrievedTrips = JSON.parse(retrievedData)
+      if (retrievedTrips.length) {
+        setTrips(() => [...trips, ...retrievedTrips])
       } 
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('savedTrips', JSON.stringify(trips))
+    if (trips.length) {
+      localStorage.setItem('savedTrips', JSON.stringify(trips))
+    }
   }, [trips])
 
   useEffect(() => {

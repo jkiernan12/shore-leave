@@ -16,7 +16,7 @@ function DestinationForm({selectedMarina, setSelectedMarina, addTrip, checkTrip}
         marina: selectedMarina,
         destinations: [],
         query: {
-          locomotion: 'walk', travelRadius: '5', interest: 'restaurants', isochrone: {}
+          locomotion: 'walk', travelRadius: '5', interest: 'restaurants', isochrone: {type: undefined}
         }
       }
       if (checkTrip(currTrip.id)) {

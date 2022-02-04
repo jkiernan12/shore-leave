@@ -6,9 +6,11 @@ import PropTypes from 'prop-types'
 
 function Form({ setter, currTrip, setCurrTrip, setErrorMessage }) {
   useEffect(() => {
-    handlePOIClick()
+    if (currTrip) {
+      handlePOIClick()
+    }
   }, []);
-
+  
   function handlePOIClick(e) {
     if (e) {
       e.preventDefault()
@@ -16,7 +18,7 @@ function Form({ setter, currTrip, setCurrTrip, setErrorMessage }) {
     searchPOI(currTrip.query, currTrip, setter)
     .then(data => setter(data.filter(poi => poi.travelTime <= currTrip.query.travelRadius)))
     .catch(err => setErrorMessage('There was an issue connecting with the database. Please try again later'))
-
+    
     fetchIsochrone(currTrip.marina.location.lon, currTrip.marina.location.lat, currTrip.query.travelRadius)
     .then(data => {
       const newCurrTrip = {...currTrip}
@@ -24,7 +26,7 @@ function Form({ setter, currTrip, setCurrTrip, setErrorMessage }) {
       setCurrTrip(newCurrTrip)
     })
   }
-
+  
   function handleInputChange(e) {
     const newValue = {
       [e.target.name]: e.target.value
@@ -46,11 +48,11 @@ function Form({ setter, currTrip, setCurrTrip, setErrorMessage }) {
       </div>
       <div className='Form--section'>
         <label htmlFor="travelRadius">Travel time (in mins):</label>
-        <input name="travelRadius" type="number" min="1" value={currTrip.query.travelRadius} onChange={(e) => handleInputChange(e)} />
+        <input name="travelRadius" type="number" min="1" value={currTrip.query?.travelRadius} onChange={(e) => handleInputChange(e)} />
       </div>
       <div className='Form--section'>
         <label htmlFor="interest">What are you looking for?</label>
-        <select name="interest" value={currTrip.query.interest} onChange={(e) => handleInputChange(e)} >
+        <select name="interest" value={currTrip.query?.interest} onChange={(e) => handleInputChange(e)} >
           <option value='restaurants'>Restaurants</option>
           <option value='grocery-stores'>Grocery Stores</option>
           <option value='hardware-stores'>Hardware Stores</option>

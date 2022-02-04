@@ -29,7 +29,7 @@ function Map({ marinas, setMarinas, updateSelectedMarina, POIs, highlightSelecte
   }, [currTrip])
 
   useEffect(() => {
-    if (currTrip?.query.isochrone?.type) {
+    if (currTrip && currTrip.query.isochrone.type) {
       setGeoJSON(currTrip.query.isochrone)
     } else {
       setGeoJSON('')

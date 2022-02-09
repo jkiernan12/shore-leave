@@ -21,3 +21,17 @@
   background-color: #262660;
   color: #d2ab2d;
 }
+
+@media (max-width: 600px) {
+.DestinationForm {
+  height: 25%;
+}
+
+.DestinationForm p {
+  margin: 2px;
+}
+
+.selected-marina {
+  font-size: 1em;
+}
+}

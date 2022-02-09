@@ -19,3 +19,17 @@
   flex-direction: column;
 }
 
+@media (max-width: 600px) {
+.Form {
+  align-items: stretch;
+}
+
+.Form button {
+  margin: 5px;
+}
+
+.Form--section {
+  width: 30%;
+  justify-content: space-between;
+}
+  }

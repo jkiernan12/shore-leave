@@ -23,7 +23,11 @@
 
 @media (max-width: 400px) {
   .Header--logo {
-    margin-block-end: 0;
-    width: 25%;
+   display: none;
+  }
+
+  .Header {
+    justify-content: flex-end;
+    height: 65px;
   }
 }

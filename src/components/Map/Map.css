@@ -10,7 +10,6 @@
 
 @media (max-width: 600px) {
   .Map--container {
-    height: 30vh;
     width: 100%;
   }
 }

@@ -29,13 +29,16 @@
   }
 
   .TripPage--right {
-    height: 60%;
+    height: 65%;
     width: 100%;
   }
 
   .Map {
     width: 100%;
-    min-height: 40%;
     overflow: none;
+  }
+  
+  .POI-section {
+    height: 75%;
   }
 }
